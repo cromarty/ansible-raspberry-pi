@@ -1,0 +1,4 @@
+
+raspberrypi ansible_python_interpreter=python3
+
+

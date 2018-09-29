@@ -1,0 +1,53 @@
+---
+## desktop.yml
+
+
+- name: Import tasks from mate.yml
+  import_tasks: mate.yml
+  when:
+    - desktop == "mate"
+  tags:
+    - desktop
+
+- name: Import tasks from i3.yml
+  import_tasks: i3.yml
+  when:
+    - desktop == "i3"
+  tags:
+    - desktop
+
+
+- name: Import tasks from xinit.yml
+  import_tasks: xinit.yml
+  when:
+    - not skip_xinit
+  tags:
+    - desktop
+
+- name: Import tasks from orca.yml
+  import_tasks: orca.yml
+  when:
+    - not skip_orca
+  tags:
+    - desktop
+
+- name: Import tasks from switches.yml
+  import_tasks: switches.yml
+  when:
+    - not skip_orca
+  tags:
+    - desktop
+
+
+- name: Import dm.yml
+  import_tasks: dm.yml
+  when:
+    - not skip_desktop_manager
+  tags:
+    - desktop
+
+- name: Import xkeyboard.yml
+  import_tasks: xkeyboard.yml
+  tags:
+    - desktop
+
