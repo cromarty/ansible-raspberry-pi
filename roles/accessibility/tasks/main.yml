@@ -8,14 +8,6 @@
   tags:
     - devtools
 
-- name: import tasks from yaourt.yml
-  import_tasks: yaourt.yml
-  when:
-    - ansible_distribution == "Archlinux"
-    - not skip_yaourt
-  tags:
-    - yaourt
-
 - name: import tasks from sound.yml
   import_tasks: sound.yml
   when:

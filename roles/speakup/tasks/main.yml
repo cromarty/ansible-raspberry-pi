@@ -1,0 +1,133 @@
+---
+
+
+#
+# The Ansible pacman module cannot handle packages which are aliases of 
+# others. It fails because of the way it tests to see if the package is 
+# already installed.
+#
+# Because in the base-devel group package there is pkg-config, and 
+# pkgconf, which is an alias of pkg-config, if we name base-devel 
+# specifically the pacman module will fail.
+#
+# So here we install everything individually and not pkg-config, which is an
+# alias for pkgconf.
+#
+# https://github.com/ansible/ansible/issues/24110
+#
+
+
+- name: Arch, install base-devel one package at a time
+  pacman:
+    name: autoconf,automake,binutils,bison,fakeroot,file,findutils,flex,gawk,gcc,gettext,grep,groff,gzip,libtool,m4,make,pacman,patch,pkgconf,sed,sudo,systemd,texinfo,util-linux,which,python2-pip,python-pip,git,intltool
+    state: latest
+    update_cache: yes
+  when:
+    - ansible_distribution == "Archlinux"
+
+- name: Debian, install development tools
+  apt:
+    name: build-essential,git,intltool
+    state: latest
+    update_cache: yes
+  when:
+    - ansible_distribution == "Debian"
+
+
+#
+# Fail if architecture is 'aarch64' (64-bit Raspberry Pi with 64-bit OS).
+#
+# Because no 64-bit userland code is currently available. The userland
+# code includes the vchiq process for queueing speech into the
+# Raspberry Pi GPU.
+#
+
+- name: Fail if architecture is aarch64 on a Raspberry Pi
+  fail:
+    msg: "No point in installing sound on 64-bit OS. No userland code available."
+  when:
+    - ansible_architecture == "aarch64"
+    - is defined raspberry_pi
+
+- name: Arch, install sound related packages
+  pacman:
+    name: alsa-utils,libao
+    update_cache: yes
+  when:
+    - ansible_distribution == "Archlinux"
+
+- name: Debian, install sound related packages
+  apt:
+    name: alsa-utils,libao4,libao-dev,libao-common
+    state: latest
+    update_cache: yes
+  when:
+    - ansible_distribution == "Debian"
+
+
+
+- name: Copy speakup.conf to /etc/modules-load.d
+  copy:
+    src: speakup.conf
+    dest: /etc/modules-load.d
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Load speakup_soft for this session
+  modprobe:
+    name: speakup_soft
+    state: present
+
+- name: Arch, install espeakup
+  pacman:
+    name: espeak,espeakup
+    state: latest
+    update_cache: yes
+  when:
+    - ansible_distribution == "Archlinux"
+
+- name: Debian install espeak
+  apt:
+    name: espeak,libespeak-dev
+    state: latest
+    update_cache: yes
+  when:
+    - ansible_distribution == "Debian"
+
+#
+# On Debian derivatives we need to defer enabling and starting espeakup
+# because the package is still configured for SysVInit and calls to apt:
+# to install it without RUNLEVEL=1 fail.
+#
+
+- name: Debian, install espeakup
+  apt:
+    name: espeakup
+    state: latest
+    update_cache: yes
+  environment:
+    RUNLEVEL: 1
+  when:
+    - ansible_distribution == "Debian"
+
+
+- name: Enable espeakup service
+  service:
+    name: espeakup
+    enabled: yes
+
+- name: Start espeakup service
+  service:
+    name: espeakup
+    state: started
+
+
+- name: Arch, add default user to wheel and audio groups
+  user:
+    name: "{{ default_user }}"
+    groups: wheel,audio
+    append: yes
+  when:
+    - ansible_distribution == "Archlinux"
+
