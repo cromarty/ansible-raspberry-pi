@@ -1,0 +1,84 @@
+---
+## i3.yml
+
+#
+# Debug msg if architecture is 'aarch64' (64-bit Raspberry Pi with 64-bit OS).
+#
+# Because no 64-bit userland code is currently available. The userland
+# code includes the vchiq process for queueing speech into the
+# Raspberry Pi GPU.
+#
+
+- name: Warn if architecture is aarch64
+  debug: msg="No point in installing desktop on 64-bit OS. No userland code available."
+  when:
+    - ansible_architecture == "aarch64"
+  tags:
+    - desktop
+
+- name: Arch, install i3 desktop
+  pacman:
+    name: i3
+    state: latest
+    update_cache: yes
+  when:
+    - ansible_distribution == "Archlinux"
+  tags:
+    - desktop
+
+- name: Debian, install i3 desktop
+  apt:
+    name: i3,suckless-tools,libglib2.0-bin,dbus-x11,dex,mate-terminal
+    state: latest
+    update_cache: yes
+  when:
+    - ansible_distribution == "Debian"
+  tags:
+    - desktop
+
+- name: Create ~/.config/i3 directory
+  file:
+    path: "/home/{{ default_user }}/.config/i3"
+    recurse: yes
+    state: directory
+  when:
+    - ansible_distribution == "Debian"
+  tags:
+    - desktop
+
+- name: Copy i3 config file
+  copy:
+    src: i3.config
+    dest: "/home/{{ default_user }}/.config/i3/config"
+    owner: "{{ default_user }}"
+    group: "{{ default_group }}"
+    mode: 0644
+  when:
+    - ansible_distribution == "Debian"
+  tags:
+    - desktop
+
+- name: Copy orca-autostart.desktop
+  copy:
+    src: orca-autostart.desktop
+    dest: /etc/xdg/autostart/orca-autostart.desktop
+    owner: root
+    group: root
+    mode: 0644
+  when:
+    - ansible_distribution == "Debian"
+  tags:
+    - desktop
+
+- name: Copy /etc/pulse/client.conf
+  copy:
+    src: client.conf
+    dest: /etc/pulse/client.conf
+    owner: root
+    group: root
+    mode: 0644
+  when:
+    - ansible_distribution == "Debian"
+  tags:
+    - desktop
+

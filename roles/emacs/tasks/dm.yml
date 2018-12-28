@@ -1,0 +1,83 @@
+---
+## dm.yml
+
+- name: Fail if unsupported desktop manager
+  fail:
+    msg: "Desktop manager {{ desktop_manager }} is not supported yet"
+  when:
+    - desktop_manager not in ["lightdm", "lxdm"]
+  tags:
+    - desktopmanager
+
+- name: Arch, install the {{ desktop_manager }} desktop manager
+  pacman:
+    name: "{{ desktop_manager }}"
+    state: latest
+    update_cache: yes
+  environment:
+    RUNLEVEL: 1
+  when:
+    - ansible_distribution == "Archlinux"
+  tags:
+    - desktopmanager
+
+- name: Debian, install the {{ desktop_manager }} desktop manager
+  apt:
+    name: "{{ desktop_manager }}"
+    state: latest
+    update_cache: yes
+  when:
+    - ansible_distribution == "Debian"
+  tags:
+    - desktopmanager
+
+- name: Copy the lightdm.conf file
+  file:
+    src: lightdm.conf
+    dest: /etc/lightdm/lightdm.conf
+    owner: root
+    group: root
+    mode: 0644
+  when:
+    - ansible_distribution == "Debian"
+  tags:
+    - desktopmanager
+
+- name: Add lightdm user to audio group
+  user:
+    name: lightdm
+    groups: audio
+    append: yes
+  when:
+    - desktop_manager == "lightdm"
+  tags:
+    - desktopmanager
+
+- name: Delete /etc/xdg/autostart/pulseaudio.desktop
+  file:
+    path: /etc/xdg/autostart/pulseaudio.desktop
+    state: absent
+  when:
+    - ansible_distribution == "Debian"
+  tags:
+    - desktopmanager
+
+#- name: Enable the "{{ desktop_manager }}" service
+#  service:
+#    name: "{{ desktop_manager }}"
+#    enabled: yes
+#  when:
+#    - enable_desktop_manager
+#  tags:
+#    - desktopmanager
+
+
+#- name: Start the "{{ desktop_manager }}" service
+#  service:
+#    name: "{{ desktop_manager }}"
+#    state: started
+#  when:
+#    - start_desktop_manager
+#  tags:
+#    - desktopmanager
+

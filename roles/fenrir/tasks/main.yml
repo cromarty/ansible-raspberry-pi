@@ -1,0 +1,159 @@
+---
+
+
+#
+# The Ansible pacman module cannot handle packages which are aliases of 
+# others. It fails because of the way it tests to see if the package is 
+# already installed.
+#
+# Because in the base-devel group package there is pkg-config, and 
+# pkgconf, which is an alias of pkg-config, if we name base-devel 
+# specifically the pacman module will fail.
+#
+# So here we install everything individually and not pkg-config, which is an
+# alias for pkgconf.
+#
+# https://github.com/ansible/ansible/issues/24110
+#
+
+
+- name: Arch, install base-devel one package at a time
+  pacman:
+    name: autoconf,automake,binutils,bison,fakeroot,file,findutils,flex,gawk,gcc,gettext,grep,groff,gzip,libtool,m4,make,pacman,patch,pkgconf,sed,sudo,systemd,texinfo,util-linux,which,python2-pip,python-pip,git,intltool
+    state: latest
+    update_cache: yes
+  when:
+    - ansible_distribution == "Archlinux"
+
+- name: Debian, install development tools
+  apt:
+    name: build-essential,git,intltool
+    state: latest
+    update_cache: yes
+  when:
+    - ansible_distribution == "Debian"
+
+
+
+#
+# Fail if architecture is 'aarch64' (64-bit Raspberry Pi with 64-bit OS).
+#
+# Because no 64-bit userland code is currently available. The userland
+# code includes the vchiq process for queueing speech into the
+# Raspberry Pi GPU.
+#
+
+- name: Fail if architecture is aarch64
+  fail:
+    msg: "No point in installing sound on 64-bit OS. No userland code available."
+  when:
+    - ansible_architecture == "aarch64"
+    - is defined raspberry_pi
+
+- name: Arch, install sound related packages
+  pacman:
+    name: alsa-utils,libao
+    update_cache: yes
+  when:
+    - ansible_distribution == "Archlinux"
+
+- name: Debian, install sound related packages
+  apt:
+    name: alsa-utils,libao4,libao-dev,libao-common
+    state: latest
+    update_cache: yes
+  when:
+    - ansible_distribution == "Debian"
+
+---
+
+- name: Arch, install speech-dispatcher
+  pacman:
+    name: speech-dispatcher
+    update_cache: yes
+  when:
+    - ansible_distribution == "Archlinux"
+
+- name: Debian, install speech-dispatcher
+  apt:
+    name: speech-dispatcher,speech-dispatcher-espeak
+    state: latest
+    update_cache: yes
+  when:
+    - ansible_distribution == "Debian"
+
+- name: Install speechd.conf template
+  template:
+    src: speechd.conf.j2
+    dest: /etc/speech-dispatcher/speechd.conf
+    backup: yes
+    owner: root
+    group: root
+    mode: 0644
+
+
+- name: Arch, add default user to wheel and audio groups
+  user:
+    name: "{{ default_user }}"
+    groups: wheel,audio
+    append: yes
+  when:
+    - ansible_distribution == "Archlinux"
+
+
+
+#
+# The host needs to be running Python 3 in order to run
+# the Fenrir screen reader
+#
+
+- name: Test which version of Python is symlinked
+  shell: python --version
+  register: python_version
+
+
+- name: Fail if not running Python 3
+  fail:
+    msg: "Fenrir needs Python 3"
+  when:
+    - python_version.stdout.find('Python 3') == -1
+
+- name: Arch, install pip3
+  pacman:
+    name: python-pip
+    state: latest
+    update_cache: yes
+  when:
+    - ansible_distribution == "Archlinux"
+
+- name: Debian, install pip3
+  apt:
+    name: python3-pip
+    state: latest
+    update_cache: yes
+  when:
+    - ansible_distribution == "Debian"
+
+- name: Arch, install Fenrir dependencies
+  pacman:
+    name: dbus
+    state: latest
+    update_cache: yes
+  when:
+    - ansible_distribution == "Archlinux"
+
+- name: Debian, install Fenrir dependencies
+  apt:
+    name: dbus,libdbus-glib-1-dev
+    state: latest
+    update_cache: yes
+  when:
+    - ansible_distribution == "Debian"
+
+
+- name: Install Fenrir screen reader from pip
+  pip:
+    name: fenrir-screenreader
+    state: present
+  when:
+    - ansible_distribution in ["Archlinux", "Debian"]
