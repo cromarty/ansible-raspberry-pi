@@ -1,0 +1,7 @@
+---
+
+- name: Clone rpi-image-tool
+  git:
+    repo: "{{ repo }}"
+    dest: "/home/{{ default_user }}/rpi-image-tool"
+
