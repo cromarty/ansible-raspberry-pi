@@ -1,0 +1,20 @@
+---
+
+- name: Arch, install multipath-tools from the AUR
+  aur:
+    name: multipath-tools
+    user: "{{ default_user }}"
+    dir: /tmp
+  when:
+    - ansible_distribution == "Archlinux"
+
+
+- name: Debian, install kpartx
+  apt:
+    name: kpartx
+    state: latest
+    update_cache: yes
+  when:
+    - ansible_distribution == "Debian"
+
+

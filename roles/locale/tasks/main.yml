@@ -1,0 +1,35 @@
+---
+
+- name: Generate locales
+  locale_gen:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ locales }}"
+  when:
+    - ansible_distribution == "Archlinux"
+
+- name: Set locale
+  command: >
+    localectl set-locale LANG="{{ default_locale }}"
+  when:
+    - ansible_distribution == "Archlinux"
+
+
+
+- name: Remove /etc/localtime link
+  file:
+    path: /etc/localtime
+    state: absent
+  when:
+    - ansible_distribution == "Archlinux"
+
+- name: Set /etc/localtime link
+  file:
+    src: "/usr/share/zoneinfo/{{ timezone }}"
+    dest: /etc/localtime
+    owner: root
+    group: root
+    state: link
+  when:
+    - ansible_distribution == "Archlinux"
+
