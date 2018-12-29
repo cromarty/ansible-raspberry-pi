@@ -1,0 +1,14 @@
+---
+
+- name: Truncate .bash_history for default_user
+  command:
+    truncate -s 0 "/home/{{ default_user }}/.bash_history"
+
+- name: Truncate .bash_history for root user
+  command:
+    truncate -s 0 /root/.bash_history
+  when:
+    - clear_root_history
+
+
+

@@ -1,0 +1,5 @@
+---
+
+default_user: alarm
+
+clear_root_history: true
