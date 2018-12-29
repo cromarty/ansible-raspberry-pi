@@ -1,12 +1,6 @@
 ---
 ## fenrir.yml
 
-- name: Start of tasks from fenrir.yml
-  debug:
-    msg: "Start of tasks from fenrir.yml"
-  tags:
-    - fenrir
-
 
 - name: Fail if architecture is aarch64 on a Raspberry Pi
   fail:
@@ -86,10 +80,3 @@
     - ansible_distribution in ["Archlinux", "Debian"]
   tags:
     - fenrir
-
-- name: End of tasks from fenrir.yml
-  debug:
-    msg: "End of tasks from fenrir.yml"
-  tags:
-    - fenrir
-

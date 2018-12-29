@@ -1,0 +1,39 @@
+---
+
+ansible_user: "{{ vault_ansible_user }}"
+ansible_become_pass: "{{ vault_ansible_become_pass }}"
+
+
+# user and group
+default_user: alarm
+default_group: alarm
+
+# which screen reader, possible values fenrir or speakup
+console_screen_reader: speakup
+
+# skip variables control which tasks are included
+skip_devtools: true
+skip_yaourt: false
+skip_sound: true
+skip_user: true
+skip_speechd: true
+skip_console: true
+skip_emacs: true
+skip_emacspeak: true
+skip_desktop: true
+skip_desktop_manager: true
+skip_xinit: true
+skip_orca: true
+skip_braille: true
+skip_extras: true
+
+# desktop related stuff. 
+desktop: mate
+desktop_manager: lightdm
+enable_desktop_manager: false
+start_desktop_manager: false
+
+# speech-dispatcher speechd.conf template variables
+AudioOutputMethod: libao
+DefaultModule: espeak
+

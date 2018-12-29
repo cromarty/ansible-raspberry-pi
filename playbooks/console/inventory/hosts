@@ -1,4 +1,7 @@
+[arch]
+192.168.0.102 ansible_python_interpreter=python3
 
-raspberrypi ansible_python_interpreter=python3
 
+[raspbian]
+192.168.0.103 ansible_interpreter=python3
 
