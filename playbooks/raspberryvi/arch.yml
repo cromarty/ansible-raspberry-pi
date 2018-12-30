@@ -1,0 +1,18 @@
+---
+
+- hosts: arch
+  become: yes
+  gather_facts: yes
+  roles:
+    #- locale
+    #- devtools
+    #- yaourt
+    #- kpartx
+    #- rpi_image_tool
+#    - desktop
+    #- accessibility
+#    - emacspeak
+#    - brltty
+#    - speakup
+    - speech_dispatcher
+

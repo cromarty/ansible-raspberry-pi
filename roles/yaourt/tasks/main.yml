@@ -16,13 +16,14 @@
 #
 
 
-- name: Arch, install base-devel
+- name: Arch, install members of base-devel individually
   pacman:
     name: autoconf,automake,binutils,bison,fakeroot,file,findutils,flex,gawk,gcc,gettext,grep,groff,gzip,libtool,m4,make,pacman,patch,pkgconf,sed,sudo,systemd,texinfo,util-linux,which,python2-pip,python-pip,git,intltool
     state: latest
     update_cache: yes
   when:
     - ansible_distribution == "Archlinux"
+    - not skip_yaourt
 
 
 - name: Arch, install package-query
@@ -32,6 +33,7 @@
     dir: /tmp
   when:
     - ansible_distribution == "Archlinux"
+    - not skip_yaourt
 
 - name: Arch, install yaourt
   aur:
@@ -40,3 +42,5 @@
     dir: /tmp
   when:
     - ansible_distribution == "Archlinux"
+    - not skip_yaourt
+

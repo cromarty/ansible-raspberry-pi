@@ -1,0 +1,14 @@
+---
+
+
+default_user: pi
+default_group: pi
+
+# skip variables control which tasks are included
+skip_orca: false
+
+
+# speech-dispatcher speechd.conf template variables
+AudioOutputMethod: libao
+DefaultModule: espeak
+

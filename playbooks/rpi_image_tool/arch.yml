@@ -1,0 +1,9 @@
+---
+
+
+- hosts: arch
+  become: yes
+  gather_facts: yes
+  roles:
+    - rpi_image_tool
+

@@ -1,0 +1,10 @@
+---
+
+
+default_user: pi
+default_group: pi
+
+# which screen reader, possible values fenrir or speakup
+console_screen_reader: speakup
+
+skip_console: false

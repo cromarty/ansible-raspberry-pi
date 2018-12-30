@@ -1,0 +1,18 @@
+---
+
+# user and group
+default_user: pi
+default_group: pi
+
+
+# skip variables control which tasks are included
+skip_desktop_manager: false
+skip_xinit: false
+skip_xkeyboard: false
+
+# desktop related stuff. 
+desktop: i3
+desktop_manager: lightdm
+enable_desktop_manager: false
+start_desktop_manager: false
+xinit_exec_string: i3

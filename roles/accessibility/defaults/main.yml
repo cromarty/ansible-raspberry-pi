@@ -8,8 +8,6 @@ default_group: pi
 console_screen_reader: speakup
 
 # skip variables control which tasks are included
-skip_devtools: false
-skip_yaourt: false
 skip_sound: false
 skip_user: false
 skip_speechd: false
@@ -17,17 +15,8 @@ skip_console: false
 skip_emacs: false
 skip_emacspeak: false
 skip_desktop: false
-skip_desktop_manager: false
-skip_xinit: false
 skip_orca: false
-skip_braille: false
-skip_extras: false
 
-# desktop related stuff. 
-desktop: mate
-desktop_manager: lightdm
-enable_desktop_manager: false
-start_desktop_manager: false
 
 # speech-dispatcher speechd.conf template variables
 AudioOutputMethod: libao

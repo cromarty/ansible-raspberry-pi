@@ -1,0 +1,59 @@
+---
+
+- name: Include the sound role
+  include_role:
+    name: sound
+
+- name: Include the emacs role
+  include_role:
+    name: emacs
+
+
+- name: Clone emacspeak
+  git:
+    repo: "{{ repo }}"
+    dest: /usr/local/src
+    depth: 1
+  tags:
+    - emacspeak
+
+
+- name: make config
+  command: >
+    make config
+  args:
+    chdir: /usr/local/src/emacspeak
+  tags:
+    - emacspeak
+
+
+- name: make emacspeak
+  command: >
+    make emacspeak
+  args:
+    chdir: /usr/local/src/emacspeak
+  tags:
+    - emacspeak
+
+
+- name: Compile the espeak server
+  command: >
+    make
+  args:
+    chdir: /usr/local/src/emacspeak/servers/native-espeak
+  tags:
+    - emacspeak
+
+
+
+- name: Copy .emacs.d/* to user directory
+  copy:
+    src: emacs.d/
+    dest: "/home/{{ default_user }}/.emacs.d/"
+    owner: "{{ default_user }}"
+    mode: 0644
+    recurse: yes
+  tags:
+    -emacspeak
+
+

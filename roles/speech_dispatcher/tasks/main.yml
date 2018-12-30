@@ -1,0 +1,45 @@
+---
+- name: Include the sound role
+  include_role:
+    name: sound
+
+- name: Arch, install speech-dispatcher
+  pacman:
+    name: speech-dispatcher
+    update_cache: yes
+  when:
+    - ansible_distribution == "Archlinux"
+  tags:
+    - speechd
+
+- name: Debian, install speech-dispatcher
+  apt:
+    name: speech-dispatcher,speech-dispatcher-espeak
+    state: latest
+    update_cache: yes
+  when:
+    - ansible_distribution == "Debian"
+  tags:
+    - speechd
+
+
+- name: Install speechd.conf template
+  template:
+    src: speechd.conf.j2
+    dest: /etc/speech-dispatcher/speechd.conf
+    backup: yes
+    owner: root
+    group: root
+    mode: 0644
+  tags:
+    - speechd
+
+- name: Install libao.conf template
+  template:
+    src: libao.conf.j2
+    dest: /etc/libao.conf
+    owner: root
+    group: root
+    mode: 0644
+  tags:
+    - speechd

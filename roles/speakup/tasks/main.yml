@@ -1,0 +1,84 @@
+---
+
+- name: Include the sound role
+  include_role:
+    name: sound
+
+- name: Copy speakup.conf to /etc/modules-load.d
+  copy:
+    src: speakup.conf
+    dest: /etc/modules-load.d
+    owner: root
+    group: root
+    mode: 0644
+  when:
+    - (ansible_distribution == "Archlinux" or ansible_distribution == "Debian")
+  tags:
+    - speakup
+
+- name: Load speakup_soft for this session
+  modprobe:
+    name: speakup_soft
+    state: present
+  when:
+    - (ansible_distribution == "Archlinux" or ansible_distribution == "Debian")
+  tags:
+    - speakup
+
+- name: Arch, install espeakup
+  pacman:
+    name: espeak,espeakup
+    state: latest
+    update_cache: yes
+  when:
+    - ansible_distribution == "Archlinux"
+  tags:
+    - speakup
+
+- name: Debian install espeak
+  apt:
+    name: espeak,libespeak-dev
+    state: latest
+    update_cache: yes
+  when:
+    - ansible_distribution == "Debian"
+  tags:
+    - speakup
+
+#
+# On Debian derivatives we need to defer enabling and starting espeakup
+# because the package is still configured for SysVInit and calls to apt:
+# to install it without RUNLEVEL=1 fail.
+#
+
+- name: Debian, install espeakup
+  apt:
+    name: espeakup
+    state: latest
+    update_cache: yes
+  environment:
+    RUNLEVEL: 1
+  when:
+    - ansible_distribution == "Debian"
+  tags:
+    - speakup
+
+
+- name: Enable espeakup service
+  service:
+    name: espeakup
+    enabled: yes
+  when:
+    - (ansible_distribution == "Archlinux" or ansible_distribution == "Debian")
+  tags:
+    - speakup
+
+- name: Start espeakup service
+  service:
+    name: espeakup
+    state: started
+  when:
+    - (ansible_distribution == "Archlinux" or ansible_distribution == "Debian")
+  tags:
+    - speakup
+

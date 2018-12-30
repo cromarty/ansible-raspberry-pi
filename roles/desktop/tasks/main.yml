@@ -1,0 +1,39 @@
+---
+
+
+- name: Import tasks from mate.yml
+  import_tasks: mate.yml
+  when:
+    - desktop == "mate"
+  tags:
+    - desktop
+
+- name: Import tasks from i3.yml
+  import_tasks: i3.yml
+  when:
+    - desktop == "i3"
+  tags:
+    - desktop
+
+
+- name: Import tasks from xinit.yml
+  import_tasks: xinit.yml
+  when:
+    - not skip_xinit
+  tags:
+    - desktop
+
+- name: Import tasks from desktop_manager.yml
+  import_tasks: desktop_manager.yml
+  when:
+    - not skip_desktop_manager
+  tags:
+    - desktop
+
+- name: Import xkeyboard.yml
+  import_tasks: xkeyboard.yml
+  when:
+    - not skip_xkeyboard
+  tags:
+    - desktop
+

@@ -1,0 +1,42 @@
+---
+
+
+#
+# Fail if architecture is 'aarch64' (64-bit Raspberry Pi with 64-bit OS).
+#
+# Because no 64-bit userland code is currently available. The userland
+# code includes the vchiq process for queueing speech into the
+# Raspberry Pi GPU.
+#
+
+- name: Fail if architecture is aarch64 on a Raspberry Pi
+  fail:
+    msg: "No point in installing sound on 64-bit OS on a Raspberry Pi. No userland code available."
+  when:
+    - ansible_architecture == "aarch64"
+    - is defined raspberry_pi
+  tags:
+    - emacspeak
+
+- name: Arch, install sound related packages
+  pacman:
+    name: alsa-utils,libao
+    update_cache: yes
+  when:
+    - ansible_distribution == "Archlinux"
+
+- name: Debian, install sound related packages
+  apt:
+    name: alsa-utils,libao4,libao-dev,libao-common
+    state: latest
+    update_cache: yes
+  when:
+    - ansible_distribution == "Debian"
+
+
+- name: Add default user to audio group
+  user:
+    name: "{{ default_user }}"
+    groups: audio
+    append: yes
+

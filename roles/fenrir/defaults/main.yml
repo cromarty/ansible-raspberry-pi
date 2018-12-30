@@ -1,0 +1,16 @@
+---
+
+
+default_user: pi
+default_group: pi
+
+console_screen_reader: fenrir
+
+# skip variables control which tasks are included
+skip_console: false
+
+
+# speech-dispatcher speechd.conf template variables
+AudioOutputMethod: libao
+DefaultModule: espeak
+

@@ -1,0 +1,9 @@
+---
+
+repo: 'https://github.com/tvraman/emacspeak.git'
+
+default_user: pi
+default_group: pi
+
+skip_emacspeak: false
+

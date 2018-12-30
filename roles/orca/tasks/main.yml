@@ -1,0 +1,65 @@
+---
+
+- name: Include the speech_dispatcher role
+  include_role:
+    name: speech_dispatcher
+
+- name: Arch, install orca
+  pacman:
+    name: orca
+    update_cache: yes
+    state: latest
+  when:
+    - ansible_distribution == "Archlinux"
+  tags:
+    - orca
+
+- name: Debian, install gnome-orca
+  apt:
+    name: gnome-orca
+    state: latest
+    update_cache: yes
+  when:
+    - ansible_distribution == "Debian"
+  tags:
+    - orca
+
+
+#
+# Need an /etc/xdg/autostart/orca-autostart.desktop
+# file for some desktops, notably i3.
+# This is not true of more complex desktops
+# where the starting of Orca
+# is handled by setting of gsettings switches
+#
+
+- name: Copy orca-autostart.desktop
+  copy:
+    src: orca-autostart.desktop
+    dest: /etc/xdg/autostart/orca-autostart.desktop
+    owner: root
+    group: root
+    mode: 0644
+  when:
+    - desktop == "i3"
+  tags:
+    - orca
+
+
+
+#
+# The library module 'gsetting' doesn't seem to cope
+# unless the following task is in the
+# key=value form
+#
+
+- name: Set boolean accessibility switches
+  gsetting: user="{{ default_user }}" key="{{ item }}" value=true
+  with_items:
+    - org.mate.interface.accessibility
+    - org.gnome.desktop.a11y.applications.screen-reader-enabled
+  when:
+    - desktop == "mate"
+
+
+
