@@ -9,6 +9,13 @@
 ;; You may delete these explanatory comments.
 (package-initialize)
 
+;; Experimental at 31/12/2018.
+;; Byte-recompile contents of ~/.emacs.d
+;; This will add startup time the first time
+;; emacs is run, but should save time
+;; on subsequent runs.
+;; Any change to a .el file will cause it to be recompiled.
+(byte-recompile-directory (expand-file-name "~/.emacs.d") 0)
 
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
@@ -23,14 +30,15 @@
 load-path)))
 
 ;; load personal libraries
-(load-library "elpa-prepare.el")
+(load-library "elpa-prepare")
 (load-library "markdown-prepare")
-(load-library "org-prepare.el")
-;;(load-library "abbrev-prepare")
+(load-library "org-prepare")
 (load-library "text-mode-prepare")
 (load-library "c-code-folding-prepare")
 
 ;; I want to evaluate elisp
+;; C-x C-e evaluates the elisp expression before point
+;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Lisp-Eval.html
 (put 'eval-expression 'disabled nil)
 
 ;; No line numbers

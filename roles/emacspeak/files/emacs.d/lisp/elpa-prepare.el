@@ -1,11 +1,8 @@
- ;;
- ;; elpa preparation
- ;;
-
- ;;; This was installed by package-install.el. ;;; This provides support for the package system and 
- ;;; interfacing with ELPA, the package archive. ;;; Move this code earlier if you want to reference 
- ;;; packages in your .emacs. (when
- (when
- (load
- (expand-file-name "~/.emacs.d/elpa/package.el"))
- (package-initialize))
+;; load emacs 24's package system. Add MELPA repository.
+(when (>= emacs-major-version 24)
+  (require 'package)
+  (add-to-list
+   'package-archives
+   ;; '("melpa" . "http://stable.melpa.org/packages/") ; many packages won't show if using stable
+   '("melpa" . "http://melpa.milkbox.net/packages/")
+   t))
