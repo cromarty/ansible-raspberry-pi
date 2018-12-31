@@ -1,0 +1,21 @@
+---
+- name: Include the xinit role
+  include_role:
+    name: xinit
+
+
+- name: Arch, install Mate desktop
+  pacman:
+    name: mate,mate-extra
+    state: latest
+    update_cache: yes
+  when:
+    - ansible_distribution == "Archlinux"
+
+- name: Debian, install Mate desktop
+  apt:
+    name: mate-core,mate-desktop-environment
+    state: latest
+    update_cache: yes
+  when:
+    - ansible_distribution == "Debian"

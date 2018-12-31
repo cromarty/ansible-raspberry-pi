@@ -1,0 +1,34 @@
+---
+
+- name: Arch, install xbindkeys and xdotool
+  pacman:
+    name: xbindkeys,xdotool
+    state: latest
+    update_cache: yes
+  when:
+    - ansible_distribution == "Archlinux"
+
+- name: Debian, install xbindkeys and xdotool
+  apt:
+    name: xbindkeys,xdotool
+    state: latest
+    update_cache: yes
+  when:
+    - ansible_distribution == "Debian"
+
+- name: Copy xkeybindkeysrc to .xkeybindkeysrc
+  copy:
+    src: xbindkeysrc
+    dest: "/home/{{ default_user }}/.xbindkeysrc"
+    owner: "{{ default_user }}"
+    group: "{{ default_group }}"
+    mode: 0644
+
+- name: Copy xsessionrc to .xsessionrc
+  copy:
+    src: xsessionrc
+    dest: "/home/{{ default_user }}/.xsessionrc"
+    owner: "{{ default_user }}"
+    group: "{{ default_group }}"
+    mode: 0644
+

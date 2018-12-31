@@ -1,0 +1,39 @@
+---
+
+- name: Include xinit role
+    include_role:
+    name: xinit
+
+- name: Arch, install i3 desktop
+  pacman:
+    name: i3
+    state: latest
+    update_cache: yes
+  when:
+    - ansible_distribution == "Archlinux"
+
+- name: Debian, install i3 desktop
+  apt:
+    name: i3,suckless-tools,libglib2.0-bin,dbus-x11,dex,mate-terminal
+    state: latest
+    update_cache: yes
+  when:
+    - ansible_distribution == "Debian"
+
+- name: Create ~/.config/i3 directory
+  file:
+    path: "/home/{{ default_user }}/.config/i3"
+    recurse: yes
+    state: directory
+  when:
+    - ansible_distribution in ["Archlinux","Debian"]
+
+- name: Copy i3 config file
+  copy:
+    src: i3.config
+    dest: "/home/{{ default_user }}/.config/i3/config"
+    owner: "{{ default_user }}"
+    group: "{{ default_group }}"
+    mode: 0644
+  when:
+    - ansible_distribution in ["Archlinux","Debian"]

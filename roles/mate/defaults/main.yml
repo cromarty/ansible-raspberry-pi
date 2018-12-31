@@ -1,0 +1,7 @@
+---
+
+
+default_user: pi
+default_group: pi
+
+xinit_exec_string: mate-session

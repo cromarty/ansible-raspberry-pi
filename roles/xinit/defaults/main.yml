@@ -1,0 +1,8 @@
+---
+
+default_user: pi
+default_group: pi
+
+skip_xinit: false
+
+xinit_exec_string: i3

@@ -1,0 +1,22 @@
+---
+
+- name: Include the speakup role
+  include_role:
+    name: speakup
+  when:
+    - console_screen_reader | default('speakup') == 'speakup'
+
+
+- name: Include the fenrir role
+  include_role:
+    name: fenrir
+  when:
+    - console_screen_reader | default('speakup') == 'fenrir'
+
+- name: Include the emacspeak role
+  include_role:
+    name: emacspeak
+  when:
+    - not skip_emacspeak | default(true)
+
+

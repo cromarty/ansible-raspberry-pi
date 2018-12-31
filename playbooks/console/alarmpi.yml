@@ -1,0 +1,11 @@
+---
+
+- hosts: alarmpi
+  become: yes
+  gather_facts: yes
+  roles:
+    - locale
+    - console
+    - extras
+    - yaourt
+    - history

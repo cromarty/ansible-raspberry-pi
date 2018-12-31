@@ -1,0 +1,19 @@
+---
+
+
+- name: Arch, install extra packages
+  pacman:
+    name: dos2unix,markdown,wget
+    state: latest
+    update_cache: yes
+  when:
+    - ansible_distribution == "Archlinux"
+
+- name: Debian, install extra packages
+  apt:
+    name: dos2unix,markdown,wget
+    state: latest
+    update_cache: yes
+  when:
+    - ansible_distribution == "Debian"
+

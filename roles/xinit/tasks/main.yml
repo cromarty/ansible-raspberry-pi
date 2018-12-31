@@ -1,0 +1,27 @@
+---
+
+- name: Arch, install xinit
+  pacman:
+    name: xorg-xinit
+    state: latest
+    update_cache: yes
+  when:
+    - ansible_distribution == "Archlinux"
+
+- name: Debian, install xinit
+  apt:
+    name: xinit
+    state: latest
+    update_cache: yes
+  when:
+    - ansible_distribution == "Debian"
+
+- name: Install .xinitrc template
+  template:
+    src: xinitrc.j2
+    dest: /home/{{ default_user }}/.xinitrc
+    backup: yes
+    owner: "{{ default_user }}"
+    group: "{{ default_group }}"
+    mode: 0644
+
