@@ -7,8 +7,8 @@
     update_cache: yes
   when:
     - ansible_distribution == "Archlinux"
-  tags:
-    - emacs
+    - not skip_emacs
+
 
 - name: Debian, install emacs-nox and emacs-goodies-el
   apt:
@@ -17,6 +17,18 @@
     update_cache: yes
   when:
     - ansible_distribution == "Debian"
-  tags:
-    - emacs
+    - not skip_emacs
+
+
+
+
+- name: Copy .emacs.d/* to user directory
+  copy:
+    src: emacs.d/
+    dest: "/home/{{ default_user }}/.emacs.d/"
+    owner: "{{ default_user }}"
+    group: "{{ default_group }}"
+    mode: 0644
+    recurse: yes
+
 

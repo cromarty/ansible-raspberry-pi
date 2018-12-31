@@ -1,9 +1,7 @@
 ---
 
-# user and group
 default_user: alarm
 default_group: alarm
 
-# skip switch
 skip_yaourt: false
 

@@ -9,3 +9,9 @@ locales:
 
 
 
+desktop: "i3"
+
+desktop_manager: "lightdm"
+enable_desktop_manager: false
+start_desktop_manager: false
+

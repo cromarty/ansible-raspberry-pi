@@ -17,22 +17,14 @@
     - ansible_distribution == "Debian"
 
 
-
 - name: Config user.name
   command: >
     git config --global user.name "{{ user_name }}"
-  tags:
-    - user_name
 
 - name: Config user.email
   command: >
     git config --global user.email "{{ user_email }}"
-  tags:
-    - user_email
 
 - name: Config core.editor
   command: >
     git config --global core.editor "{{ core_editor }}"
-  tags:
-    - core_editor
-

@@ -14,9 +14,7 @@
     msg: "No point in installing sound on 64-bit OS on a Raspberry Pi. No userland code available."
   when:
     - ansible_architecture == "aarch64"
-    - is defined raspberry_pi
-  tags:
-    - emacspeak
+    - raspberry_pi|default(true)
 
 - name: Arch, install sound related packages
   pacman:

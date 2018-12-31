@@ -12,18 +12,14 @@
     group: root
     mode: 0644
   when:
-    - (ansible_distribution == "Archlinux" or ansible_distribution == "Debian")
-  tags:
-    - speakup
+    - ansible_distribution in ["Archlinux","Debian"]
 
 - name: Load speakup_soft for this session
   modprobe:
     name: speakup_soft
     state: present
   when:
-    - (ansible_distribution == "Archlinux" or ansible_distribution == "Debian")
-  tags:
-    - speakup
+    - ansible_distribution in ["Archlinux","Debian"]
 
 - name: Arch, install espeakup
   pacman:
@@ -32,8 +28,6 @@
     update_cache: yes
   when:
     - ansible_distribution == "Archlinux"
-  tags:
-    - speakup
 
 - name: Debian install espeak
   apt:
@@ -42,8 +36,6 @@
     update_cache: yes
   when:
     - ansible_distribution == "Debian"
-  tags:
-    - speakup
 
 #
 # On Debian derivatives we need to defer enabling and starting espeakup
@@ -60,8 +52,6 @@
     RUNLEVEL: 1
   when:
     - ansible_distribution == "Debian"
-  tags:
-    - speakup
 
 
 - name: Enable espeakup service
@@ -69,16 +59,12 @@
     name: espeakup
     enabled: yes
   when:
-    - (ansible_distribution == "Archlinux" or ansible_distribution == "Debian")
-  tags:
-    - speakup
+    - ansible_distribution in ["Archlinux","Debian"]
 
 - name: Start espeakup service
   service:
     name: espeakup
     state: started
   when:
-    - (ansible_distribution == "Archlinux" or ansible_distribution == "Debian")
-  tags:
-    - speakup
+    - ansible_distribution in ["Archlinux","Debian"]
 

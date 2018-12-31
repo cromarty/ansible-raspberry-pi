@@ -11,8 +11,6 @@
     state: latest
   when:
     - ansible_distribution == "Archlinux"
-  tags:
-    - orca
 
 - name: Debian, install gnome-orca
   apt:
@@ -21,8 +19,6 @@
     update_cache: yes
   when:
     - ansible_distribution == "Debian"
-  tags:
-    - orca
 
 
 #
@@ -42,8 +38,16 @@
     mode: 0644
   when:
     - desktop == "i3"
-  tags:
-    - orca
+
+- name: Copy orca-dm-wrapper
+  copy:
+    src: orca-dm-wrapper
+    dest: /usr/bin
+    owner: root
+    group: root
+    mode: 0755
+  when:
+    - desktop_manager == "lightdm"
 
 
 

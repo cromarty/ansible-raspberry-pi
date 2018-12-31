@@ -7,11 +7,3 @@ default_group: pi
 
 skip_speechd: false
 
-
-# speech-dispatcher speechd.conf template variables
-AudioOutputMethod: libao
-DefaultModule: espeak
-
-# libao.conf values
-libao_default_driver: alsa
-

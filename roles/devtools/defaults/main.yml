@@ -1,2 +1,7 @@
 ---
 
+default_user: pi
+default_group: pi
+
+skip_devtools: false
+

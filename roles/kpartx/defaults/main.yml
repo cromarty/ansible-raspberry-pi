@@ -1,6 +1,8 @@
 ---
 
-# user and group
 default_user: alarm
 default_group: alarm
+
+
+skip_kpartx: false
 

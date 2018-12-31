@@ -14,8 +14,6 @@
     repo: "{{ repo }}"
     dest: /usr/local/src
     depth: 1
-  tags:
-    - emacspeak
 
 
 - name: make config
@@ -23,8 +21,6 @@
     make config
   args:
     chdir: /usr/local/src/emacspeak
-  tags:
-    - emacspeak
 
 
 - name: make emacspeak
@@ -32,8 +28,6 @@
     make emacspeak
   args:
     chdir: /usr/local/src/emacspeak
-  tags:
-    - emacspeak
 
 
 - name: Compile the espeak server
@@ -41,9 +35,6 @@
     make
   args:
     chdir: /usr/local/src/emacspeak/servers/native-espeak
-  tags:
-    - emacspeak
-
 
 
 - name: Copy .emacs.d/* to user directory
@@ -53,7 +44,14 @@
     owner: "{{ default_user }}"
     mode: 0644
     recurse: yes
-  tags:
-    -emacspeak
 
+
+- name: Add emacspeak extensions to emacs startup lisp
+  lineinfile:
+    path: /home/alarm/.emacs.d/init.el
+    insertbefore: BOF
+    line: "{{ item }}"
+  with_items:
+     - '(load-file "/usr/local/src/emacspeak/lisp/emacspeak-setup.el")'
+    - ';; Load emacspeak extensions'
 

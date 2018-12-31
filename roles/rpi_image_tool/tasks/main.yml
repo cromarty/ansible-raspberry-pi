@@ -4,6 +4,7 @@
   git:
     repo: "{{ repo }}"
     dest: /root/rpi-image-tool
+    depth: 1
 
 - name: Make rpi-image-tool
   command: >

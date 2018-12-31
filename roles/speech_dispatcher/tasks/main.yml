@@ -9,8 +9,6 @@
     update_cache: yes
   when:
     - ansible_distribution == "Archlinux"
-  tags:
-    - speechd
 
 - name: Debian, install speech-dispatcher
   apt:
@@ -19,8 +17,6 @@
     update_cache: yes
   when:
     - ansible_distribution == "Debian"
-  tags:
-    - speechd
 
 
 - name: Install speechd.conf template
@@ -31,8 +27,6 @@
     owner: root
     group: root
     mode: 0644
-  tags:
-    - speechd
 
 - name: Install libao.conf template
   template:
@@ -41,5 +35,3 @@
     owner: root
     group: root
     mode: 0644
-  tags:
-    - speechd

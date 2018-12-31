@@ -2,12 +2,12 @@
 
 
 #
-# The Ansible pacman module cannot handle packages which are aliases of 
-# others. It fails because of the way it tests to see if the package is 
+# The Ansible pacman module cannot handle packages which are aliases of
+# others. It fails because of the way it tests to see if the package is
 # already installed.
 #
-# Because in the base-devel group package there is pkg-config, and 
-# pkgconf, which is an alias of pkg-config, if we name base-devel 
+# Because in the base-devel group package there is pkg-config, and
+# pkgconf, which is an alias of pkg-config, if we name base-devel
 # specifically the pacman module will fail.
 #
 # So here we install everything individually and not pkg-config, which is an
@@ -24,8 +24,6 @@
     update_cache: yes
   when:
     - ansible_distribution == "Archlinux"
-  tags:
-    - devtools
 
 - name: Debian, install development tools
   apt:
@@ -34,6 +32,11 @@
     update_cache: yes
   when:
     - ansible_distribution == "Debian"
-  tags:
-    - devtools
+
+
+- name: Include the extras role
+  include_role:
+    name: extras
+  when:
+    - not skip_extras|default(false)
 

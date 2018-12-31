@@ -7,8 +7,6 @@
     update_cache: yes
   when:
     - ansible_distribution == "Archlinux"
-  tags:
-    - brltty
 
 
 - name: Arch, install brltty-minimal from the AUR
@@ -18,8 +16,6 @@
     dir: /tmp
   when:
     - ansible_distribution == "Archlinux"
-  tags:
-    - brltty
 
 - name: Debian, install brltty
   apt:
@@ -28,9 +24,6 @@
     update_cache: yes
   when:
     - ansible_distribution == "Debian"
-  tags:
-    - brltty
-
 
 
 

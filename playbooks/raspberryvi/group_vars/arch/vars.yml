@@ -6,6 +6,7 @@ ansible_become_pass: "{{ vault_ansible_become_pass }}"
 default_user: alarm
 default_group: alarm
 
-skip_emacspeak: false
+#console_screen_reader: "speakup"
+
 
 
