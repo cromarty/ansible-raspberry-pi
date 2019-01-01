@@ -8,5 +8,6 @@
     - yaourt
     - console
     - extras
+    - kpartx
     - rpi_image_tool
     - history

@@ -14,57 +14,9 @@
   when:
     - ansible_distribution in ["Archlinux","Debian"]
 
-- name: Load speakup_soft for this session
-  modprobe:
-    name: speakup_soft
-    state: present
-  when:
-    - ansible_distribution in ["Archlinux","Debian"]
-
-- name: Arch, install espeakup
-  pacman:
-    name: espeak,espeakup
-    state: latest
-    update_cache: yes
-  when:
-    - ansible_distribution == "Archlinux"
-
-- name: Debian install espeak
-  apt:
-    name: espeak,libespeak-dev
-    state: latest
-    update_cache: yes
-  when:
-    - ansible_distribution == "Debian"
-
-#
-# On Debian derivatives we need to defer enabling and starting espeakup
-# because the package is still configured for SysVInit and calls to apt:
-# to install it without RUNLEVEL=1 fail.
-#
-
-- name: Debian, install espeakup
-  apt:
+- name: Include the espeakup role
+  include_role:
     name: espeakup
-    state: latest
-    update_cache: yes
-  environment:
-    RUNLEVEL: 1
-  when:
-    - ansible_distribution == "Debian"
-
-
-- name: Enable espeakup service
-  service:
-    name: espeakup
-    enabled: yes
-  when:
-    - ansible_distribution in ["Archlinux","Debian"]
-
-- name: Start espeakup service
-  service:
-    name: espeakup
-    state: started
   when:
     - ansible_distribution in ["Archlinux","Debian"]
 

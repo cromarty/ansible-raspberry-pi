@@ -53,13 +53,13 @@
   args:
     chdir: /usr/local/src/emacspeak/servers/native-espeak
 
+##
 
-- name: Add emacspeak extensions to emacs startup lisp
-  lineinfile:
-    path: /home/alarm/.emacs.d/init.el
+- name: Insert emacspeak-setup.el load-file at top of emacs init file
+  blockinfile:
+    path: "/home/{{ default_user }}/.emacs.d/init.el"
+    marker: ";; {mark} ANSIBLE MANAGED BLOCK"
     insertbefore: BOF
-    line: "{{ item }}"
-  with_items:
-    - '(load-file "/usr/local/src/emacspeak/lisp/emacspeak-setup.el")'
-    - ';; Load emacspeak extensions'
-
+    content: |
+      ;; Load emacspeak extensions
+      (load-file "/usr/local/src/emacspeak/lisp/emacspeak-setup.el")

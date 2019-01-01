@@ -1,9 +1,16 @@
 ---
 
-
 - hosts: raspbian
   become: yes
   gather_facts: yes
   roles:
-    - console
+    - devtools
+    - espeakup
 
+#    - locale
+#    - devtools
+#    - console
+#    - extras
+#    - kpartx
+#    - rpi_image_tool
+#    - history

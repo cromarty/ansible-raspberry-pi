@@ -1,0 +1,54 @@
+---
+
+
+#
+# Note that espeakup installation and config is
+# currently broken in Raspbian.
+#
+# This file currently installs
+# espeakup dependencies for Raspbian, but not espeakup itself.
+#
+
+- name: Load speakup_soft for this session
+  modprobe:
+    name: speakup_soft
+    state: present
+  when:
+    - ansible_distribution in ["Archlinux","Debian"]
+
+- name: Arch, install espeakup
+  pacman:
+    name: espeak,espeakup
+    state: latest
+    update_cache: yes
+  when:
+    - ansible_distribution == "Archlinux"
+
+- name: Debian install espeak and libespeak-dev
+  apt:
+    name: espeak,libespeak-dev
+    state: latest
+    update_cache: yes
+  when:
+    - ansible_distribution == "Debian"
+
+
+
+- name: Ensure espeakup is started and enabled at boot.
+  systemd:
+    name: espeakup
+    state: started
+    enabled: yes
+  when:
+    - ansible_distribution in ["Archlinux","Debian"]
+
+- name: Restart espeakup and reload systemd daemon
+  systemd:
+    name: espeakup
+    state: restarted
+    daemon_reload: yes
+  when:
+    - ansible_distribution in ["Archlinux","Debian"]
+
+
+
