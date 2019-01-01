@@ -1,6 +1,4 @@
-
- (load-file "/usr/local/src/emacspeak/lisp/emacspeak-setup.el")
-
+;;Ansible managed
 
 
 ;; Added by Package.el.  This must come before configurations of
