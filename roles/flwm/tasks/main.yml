@@ -1,0 +1,34 @@
+---
+
+
+- name: Include the devtools role
+  include_role:
+    name: devtools
+
+
+- name: Arch, install fltk dependencies
+  pacman:
+    name: alsa-lib,desktop-file-utils,doxygen,glu,libjpeg,libxcursor,libxft,libxinerama,mesa
+    state: latest
+    update_cache: yes
+  when:
+    - ansible_distribution == "Archlinux"
+
+
+- name: Arch, install fltk from the AUR
+  aur:
+    name: fltk
+    user: "{{ default_user }}"
+    dir: /tmp
+  when:
+    - ansible_distribution == "Archlinux"
+
+
+- name: Arch, install flwm from the AUR
+  aur:
+    name: flwm
+    user: "{{ default_user }}"
+    dir: /tmp
+  when:
+    - ansible_distribution == "Archlinux"
+
