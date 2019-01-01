@@ -1,0 +1,19 @@
+---
+
+raspberry_pi: true
+
+default_locale: 'en_GB.utf8'
+
+locales:
+  - 'en_GB.UTF-8'
+
+
+
+skip_emacspeak: false
+
+desktop: "i3"
+
+desktop_manager: "lightdm"
+enable_desktop_manager: false
+start_desktop_manager: false
+

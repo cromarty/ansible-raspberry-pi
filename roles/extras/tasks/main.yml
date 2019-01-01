@@ -3,7 +3,7 @@
 
 - name: Arch, install extra packages
   pacman:
-    name: dos2unix,markdown,wget
+    name: dos2unix,markdown,wget,picocom
     state: latest
     update_cache: yes
   when:
@@ -11,7 +11,7 @@
 
 - name: Debian, install extra packages
   apt:
-    name: dos2unix,markdown,wget
+    name: dos2unix,markdown,wget,picocom
     state: latest
     update_cache: yes
   when:

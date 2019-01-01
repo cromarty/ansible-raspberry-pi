@@ -8,7 +8,7 @@
   command:
     truncate -s 0 /root/.bash_history
   when:
-    - clear_root_history
+    - clear_root_history|default(false)
 
 
 
