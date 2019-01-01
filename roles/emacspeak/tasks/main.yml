@@ -16,6 +16,10 @@
   when:
     - ansible_distribution == "Archlinux"
 
+- name: Include the devtools role
+  include_role:
+    name: devtools
+
 
 - name: Arch, install emacspeak dependency tclx
   aur:
