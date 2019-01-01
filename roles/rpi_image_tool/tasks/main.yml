@@ -3,18 +3,18 @@
 - name: Clone rpi-image-tool
   git:
     repo: "{{ repo }}"
-    dest: /root/rpi-image-tool
+    dest: /tmp/rpi-image-tool
     depth: 1
 
 - name: Make rpi-image-tool
   command: >
     make
   args:
-    chdir: /root/rpi-image-tool
+    chdir: /tmp/rpi-image-tool
 
 - name: Install rpi-image-tool
   command: >
     make install
   args:
-    chdir: /root/rpi-image-tool
+    chdir: /tmp/rpi-image-tool
 

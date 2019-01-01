@@ -32,3 +32,9 @@
   when:
     - ansible_distribution == "Archlinux"
 
+- name: Configure the console keymap
+  command: >
+    localectl set-keymap "{{ console_keymap|default('uk') }}"
+  when:
+    - ansible_distribution == "Archlinux"
+

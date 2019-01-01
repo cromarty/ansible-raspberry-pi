@@ -12,3 +12,6 @@ locales:
 timezone: "Europe/London"
 
 
+console_keymap: "uk"
+
+

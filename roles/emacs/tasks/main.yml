@@ -25,10 +25,10 @@
 - name: Copy .emacs.d/* to user directory
   copy:
     src: emacs.d/
-    dest: "/home/{{ default_user }}/.emacs.d/"
+    dest: "/home/{{ default_user }}/.emacs.d"
     owner: "{{ default_user }}"
     group: "{{ default_group }}"
     mode: 0644
-    recurse: yes
+
 
 

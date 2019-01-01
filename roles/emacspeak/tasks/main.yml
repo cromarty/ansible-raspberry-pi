@@ -8,11 +8,28 @@
   include_role:
     name: emacs
 
+- name: Arch, install emacspeak espeak server dependencies tcl and tk
+  pacman:
+    name: tcl,tk
+    state: latest
+    update_cache: yes
+  when:
+    - ansible_distribution == "Archlinux"
+
+
+- name: Arch, install emacspeak dependency tclx
+  aur:
+    name: tclx
+    user: "{{ default_user }}"
+    dir: /tmp
+  when:
+    - ansible_distribution == "Archlinux"
+
 
 - name: Clone emacspeak
   git:
     repo: "{{ repo }}"
-    dest: /usr/local/src
+    dest: /usr/local/src/emacspeak
     depth: 1
 
 
@@ -37,21 +54,12 @@
     chdir: /usr/local/src/emacspeak/servers/native-espeak
 
 
-- name: Copy .emacs.d/* to user directory
-  copy:
-    src: emacs.d/
-    dest: "/home/{{ default_user }}/.emacs.d/"
-    owner: "{{ default_user }}"
-    mode: 0644
-    recurse: yes
-
-
 - name: Add emacspeak extensions to emacs startup lisp
   lineinfile:
     path: /home/alarm/.emacs.d/init.el
     insertbefore: BOF
     line: "{{ item }}"
   with_items:
-     - '(load-file "/usr/local/src/emacspeak/lisp/emacspeak-setup.el")'
+    - '(load-file "/usr/local/src/emacspeak/lisp/emacspeak-setup.el")'
     - ';; Load emacspeak extensions'
 

@@ -9,6 +9,8 @@ locales:
 
 
 
+skip_emacspeak: false
+
 desktop: "i3"
 
 desktop_manager: "lightdm"
