@@ -1,0 +1,43 @@
+---
+
+#
+# The host needs to be running Python 3 in order to run
+# the Fenrir screen reader
+#
+
+- name: Test which version of Python is symlinked
+  shell: python --version
+  register: python_version
+
+- name: Fail if not running Python 3
+  fail:
+    msg: "Fenrir needs Python 3"
+  when:
+    - python_version.stdout.find('Python 3') == -1
+
+
+- name: Arch, install Fenrir dependencies
+  pacman:
+    name: dbus
+    state: latest
+    update_cache: yes
+  when:
+    - ansible_distribution == "Archlinux"
+
+- name: Debian, install Fenrir dependencies
+  apt:
+    name: dbus,libdbus-glib-1-dev
+    state: latest
+    update_cache: yes
+  when:
+    - ansible_distribution == "Debian"
+
+
+
+- name: Install Fenrir screen reader from pip
+  pip:
+    name: fenrir-screenreader
+    state: present
+  when:
+    - ansible_distribution in ["Archlinux", "Debian"]
+
