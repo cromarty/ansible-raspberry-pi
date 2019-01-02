@@ -67,3 +67,45 @@
   when:
     - ansible_distribution in ["Archlinux","Debian"]
 
+
+
+
+- name: Arch, copy fenrir.service.arch to /lib/systemd/system/fenrir.service
+  copy:
+    src: fenrir.service.arch
+    dest: /lib/systemd/system
+    owner: root
+    group: root
+    mode: 0644
+  when:
+    -ansible_distribution == "Archlinux"
+
+- name: Debian, copy fenrir.service.debian to /lib/systemd/system/fenrir.service
+  copy:
+    src: fenrir.service.debian
+    dest: /lib/systemd/system
+    owner: root
+    group: root
+    mode: 0644
+  when:
+    - ansible_distribution == "Debian"
+
+- name: Ensure fenrir is started and enabled at boot.
+  systemd:
+    name: fenrir
+    state: started
+    enabled: yes
+  when:
+    - ansible_distribution in ["Archlinux","Debian"]
+
+- name: Restart fenrir and reload systemd daemon
+  systemd:
+    name: fenrir
+    state: restarted
+    daemon_reload: yes
+  when:
+    - ansible_distribution in ["Archlinux","Debian"]
+
+
+
+
