@@ -18,7 +18,7 @@
 
 - name: Arch, install sound related packages
   pacman:
-    name: alsa-utils,libao
+    name: alsa-utils,libao,sox
     update_cache: yes
   when:
     - ansible_distribution == "Archlinux"

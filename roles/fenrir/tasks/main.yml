@@ -15,6 +15,10 @@
   when:
     - python_version.stdout.find('Python 3') == -1
 
+- name: Include the sound role
+  include_role:
+    name: sound
+
 
 - name: Arch, install Fenrir dependencies
   pacman:
@@ -40,4 +44,26 @@
     state: present
   when:
     - ansible_distribution in ["Archlinux", "Debian"]
+
+- name: Replace /etc/fenrirscreenreader/settings/settings.conf with template
+  template:
+    src: settings.conf.j2
+    dest: /etc/fenrirscreenreader/settings/settings.conf
+    backup: yes
+    owner: root
+    group: root
+    mode: 0644
+  when:
+    - ansible_distribution in ["Archlinux","Debian"]
+
+- name: Replace /etc/fenrirscreenreader/settings/settings-daemon.conf with template
+  template:
+    src: settings-daemon.conf.j2
+    dest: /etc/fenrirscreenreader/settings/settings-daemon.conf
+    backup: yes
+    owner: root
+    group: root
+    mode: 0644
+  when:
+    - ansible_distribution in ["Archlinux","Debian"]
 
