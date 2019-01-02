@@ -6,6 +6,20 @@ All code in this repository is copyright(R), 2018, Mike Ray,
 
 Exceptions are some Ansible library code in `libraries`.
 
+The libraries in there are licensed thusly:
+
+* aur
+
+MIT license.
+
+https://github.com/pigmonkey/ansible-aur
+
+* gsetting
+
+Apache license.
+
+https://github.com/jistr/ansible-gsetting
+
 ## Sub-directories
 
 * roles
@@ -19,6 +33,8 @@ Playbooks using the roles.
 * libraries
 
 Libraries that are not part of Ansible, third-party libraries.
+
+See links given above.
 
 ## Purpose
 
