@@ -1,0 +1,11 @@
+---
+
+
+- name: Arch, install minimum packages for working xorg-server
+  pacman:
+    name: xorg-server,xorg-xinit,xf86-video-fbdev,xf86-input-keyboard,xorg-xkbcomp,xorg-twm
+    state: latest
+    update_cache: yes
+  when:
+    - ansible_distribution == "Archlinux"
+

@@ -4,6 +4,7 @@
   become: yes
   gather_facts: yes
   roles:
+    - brltty
     - locale
     - yaourt
     - console

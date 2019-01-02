@@ -30,6 +30,46 @@ The role and playbook combinations are capable of installing console mode screen
 
 Emacspeak, the 'complete audio desktop', is included.
 
+## 'skip_*' Variables
+
+Those roles which are not simply roles which call others, all have
+'skip_*' variables defined in their defaults.
+
+These skip variables are used by those roles which call them, in order
+for the calling role to make it possible to select which of the roles
+it calls actually gets run.
+
+For example, the 'brltty' role contains a variable called
+'skip_brltty'.
+
+But the 'skip_brltty' variable is not used inside the task lists contained
+in brltty, but is used in the console role to make it possible to
+select or de-select brltty for installation.
+
+Some of these skip variables are defaulted to false, some to true.
+
+Again, using brltty as an example, the 'skip_brltty' variable defaults
+to true, since not many people are lucky enough to own a refreshable
+Braille display.
+
+So, to install brltty when calling the console role, set skip_brltty
+to false in the variables in the playbook calling that role.
+
+## Tasks All Default Variables
+
+No variables are left hanging, causing Ansible to fail if a variable
+is not defined.
+
+For example, if the locale role is called, and the user has not set a
+list of locales to generate, it will default the list of roles to an
+empty list and the task which calls 'local-gen' will be skipped.
+
+Likewise, scalars should all be defaulted when they are missing. The
+timezone is defaulted to 'UTC' if it is missing.
+
+The same is true for boolean 'skip_*' varaibles discussed above.
+
+
 
 
 

@@ -5,3 +5,6 @@ default_user: pi
 default_group: pi
 
 repo: 'https://github.com/tvraman/emacspeak.git'
+
+skip_emacspeak: true
+
