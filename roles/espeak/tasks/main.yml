@@ -1,0 +1,23 @@
+---
+
+- name: Arch, install espeak
+  pacman:
+    name: espeak-ng
+    state: latest
+    update_cache: yes
+  when:
+    - ansible_distribution == "Archlinux"
+
+#
+# Note, the -ng versions of espeak and libespeak are only available from
+# stretch onwards
+#
+
+- name: Debian, install espeak-ng and libespeak-ng-dev
+  apt:
+    name: espeak-ng,libespeak-ng-dev
+    state: latest
+    update_cache: yes
+  when:
+    - ansible_distribution == "Debian"
+

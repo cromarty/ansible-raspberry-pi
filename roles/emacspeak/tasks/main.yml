@@ -16,12 +16,15 @@
   when:
     - ansible_distribution == "Archlinux"
 
+
 - name: Include the devtools role
   include_role:
     name: devtools
+  when:
+    - ansible_distribution == "Archlinux"
 
 
-- name: Arch, install emacspeak dependency tclx
+- name: Arch, install emacspeak dependency tclx from the AUR
   aur:
     name: tclx
     user: "{{ default_user }}"
@@ -32,32 +35,46 @@
 
 - name: Clone emacspeak
   git:
-    repo: "{{ repo }}"
+    repo: "{{ git_repository }}"
+    version: "{{ emacspeak_git_commit }}"
     dest: /usr/local/src/emacspeak
-    depth: 1
+  when:
+    - ansible_distribution == "Archlinux"
 
 
-- name: make config
-  command: >
-    make config
-  args:
+- name: Arch, copy the espeak-server-Makefile.patch
+  copy:
+    src: espeak-server-Makefile.patch
+    dest: /tmp
+    user: root
+   group: root
+    mode: 0644
+  when:
+    - ansible_distribution == "Archlinux"
+
+
+- name: Arch, patch the espeak server Makefile
+  patch:
+    src: /tmp/espeak-server-Makefile.patch
+    dest: "/usr/local/src/emacspeak/{{ emacspeak_espeak_server_path }}/Makefile"
+  when:
+    - ansible_distribution == "Archlinux"
+
+
+- name: Arch, patch the emacspeak espeak server Makefile to use libespeak-ng
+
+
+- name: make targets
+  make:
     chdir: /usr/local/src/emacspeak
+    target: "{{ item }}"
+  with_items:
+    - config
+    - emacspeak
+    - espeak
+  when:
+    - ansible_distribution == "Archlinux"
 
-
-- name: make emacspeak
-  command: >
-    make emacspeak
-  args:
-    chdir: /usr/local/src/emacspeak
-
-
-- name: Compile the espeak server
-  command: >
-    make
-  args:
-    chdir: /usr/local/src/emacspeak/servers/native-espeak
-
-##
 
 - name: Insert emacspeak-setup.el load-file at top of emacs init file
   blockinfile:
@@ -67,3 +84,16 @@
     content: |
       ;; Load emacspeak extensions
       (load-file "/usr/local/src/emacspeak/lisp/emacspeak-setup.el")
+  when:
+    - ansible_distribution == "Archlinux"
+
+
+- name: Debian, install emacspeak
+  apt:
+    name: emacspeak,emacspeak-espeak-server
+    state: latest
+    update_cache: yes
+  when:
+    - ansible_distribution == "Debian"
+
+

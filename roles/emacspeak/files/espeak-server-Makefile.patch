@@ -1,0 +1,4 @@
+11c11
+< LIBS= -ltcl$(TCL_VERSION) -lespeak
+---
+> LIBS= -ltcl$(TCL_VERSION) -lespeak-ng

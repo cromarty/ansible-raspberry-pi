@@ -37,13 +37,21 @@
     - ansible_distribution == "Debian"
 
 
-
-- name: Install Fenrir screen reader from pip
+- name: Arch, install Fenrir screen reader from PyPI
   pip:
     name: fenrir-screenreader
     state: present
   when:
-    - ansible_distribution in ["Archlinux", "Debian"]
+    - ansible_distribution == "Archlinux"
+
+
+
+- name: Debian, install Fenrir with pip using git
+  pip:
+    name: git+https://github.com/chrys87/fenrir.git
+  when:
+    - ansible_distribution == "Debian"
+
 
 - name: Replace /etc/fenrirscreenreader/settings/settings.conf with template
   template:
@@ -66,8 +74,6 @@
     mode: 0644
   when:
     - ansible_distribution in ["Archlinux","Debian"]
-
-
 
 
 - name: Arch, copy fenrir.service.arch to /lib/systemd/system/fenrir.service

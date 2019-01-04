@@ -4,7 +4,16 @@
 default_user: pi
 default_group: pi
 
-repo: 'https://github.com/tvraman/emacspeak.git'
-
 skip_emacspeak: true
+
+git_repository: 'https://github.com/tvraman/emacspeak.git'
+
+# This is the git commit for emacspeak version 49.0
+# Get commit hashes like this: git show-ref --tags
+emacspeak_git_commit: 1eb82bb77a42a5d4160ba9e329c231fa01d5c6e2
+
+# This is the sub-directory of the emacspeak source path where the
+# espeak server Makefile can be found
+# Note this has changed between emacspeak 49.0 and the current HEAD at 01/01/2019
+emacspeak_espeak_server_path: servers/linux-espeak
 
