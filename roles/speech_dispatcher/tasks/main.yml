@@ -3,6 +3,12 @@
   include_role:
     name: sound
 
+
+- name: Include the espeak role
+  include_role:
+    name: espeak
+
+
 - name: Arch, install speech-dispatcher
   pacman:
     name: speech-dispatcher

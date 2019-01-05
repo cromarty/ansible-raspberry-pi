@@ -1,5 +1,11 @@
 ---
 
+
+- name: Include the kpartx role
+  include_role:
+    name: kpartx
+
+
 - name: Clone rpi-image-tool
   git:
     repo: "{{ repo }}"

@@ -20,6 +20,11 @@
     name: sound
 
 
+- name: Include the espeak role
+  include_role:
+    name: espeak
+
+
 - name: Arch, install Fenrir dependencies
   pacman:
     name: dbus
@@ -79,7 +84,7 @@
 - name: Arch, copy fenrir.service.arch to /lib/systemd/system/fenrir.service
   copy:
     src: fenrir.service.arch
-    dest: /lib/systemd/system
+    dest: /lib/systemd/system/fenrir.service
     owner: root
     group: root
     mode: 0644

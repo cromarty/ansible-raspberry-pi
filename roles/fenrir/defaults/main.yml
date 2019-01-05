@@ -12,7 +12,7 @@ skip_fenrir: true
 
 # Setting variables for /etc/fenrirscreenreader/settings/settings.conf
 fenrir_sound_enabled: true
-fenrir_sound_driver: 'genericDriver
+fenrir_sound_driver: 'genericDriver'
 fenrir_sound_theme: 'default'
 fenrir_sound_volume: 1.0
 fenrir_sound_genericPlayFileCommand: 'fix this'
@@ -122,7 +122,7 @@ fenrir_time_interrupt: false
 
 # Setting variables for /etc/fenrirscreenreader/settings/settings-daemon.conf
 fenrir_daemon_sound_enabled: true
-fenrir_daemon_sound_driver: 'genericDriver
+fenrir_daemon_sound_driver: 'genericDriver'
 fenrir_daemon_sound_theme: 'default'
 fenrir_daemon_sound_volume: 1.0
 fenrir_daemon_sound_genericPlayFileCommand: 'fix this'
@@ -232,7 +232,7 @@ fenrir_daemon_time_interrupt: false
 
 # Setting variables for /etc/fenrirscreenreader/settings/settings-pty.conf
 fenrir_pty_sound_enabled: true
-fenrir_pty_sound_driver: 'genericDriver
+fenrir_pty_sound_driver: 'genericDriver'
 fenrir_pty_sound_theme: 'default'
 fenrir_pty_sound_volume: 1.0
 fenrir_pty_sound_genericPlayFileCommand: 'fix this'

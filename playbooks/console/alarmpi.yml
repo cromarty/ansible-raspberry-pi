@@ -4,11 +4,14 @@
   become: yes
   gather_facts: yes
   roles:
-    - brltty
-    - locale
-    - yaourt
-    - console
-    - extras
-    - kpartx
-    - rpi_image_tool
-    - history
+    - fenrir
+
+
+#    - brltty
+#    - locale
+#    - yaourt
+#    - console
+#    - extras
+#    - kpartx
+#    - rpi_image_tool
+#    - history
