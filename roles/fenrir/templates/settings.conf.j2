@@ -36,34 +36,40 @@ genericFrequencyCommand=play -q -v fenrirVolume -n -c1 synth fenrirDuration sine
 # Turn speech on or off:
 enabled={{ (fenrir_speech_enabled|default(true))|ternary(True,False) }}
 
-# Select speech driver, options are speechdDriver (default), genericDriver, emacspeak or espeakDriver:
-#driver=speechdDriver
-#driver=espeakDriver
-#driver=emacspeakDriver
+# Select speech driver, options are:
+# speechdDriver (default)
+# genericDriver
+# emacspeak
+# espeakDriver
 driver={{ fenrir_speech_driver|default('genericDriver') }}
 
 # server path for emacspeak
-#serverPath={{ fenrir_speech_serverPath|default('/usr/local/src/emacspeak/servers/native-espeak') }}
-serverPath=/home/chrys/Projekte/emacspeak/servers/espeak
+serverPath={{ fenrir_speech_serverPath|default('') }}
 
-# The rate selects how fast Fenrir will speak. Options range from 0, slowest, to 1.0, fastest.
+# The rate selects how fast Fenrir will speak.
+# Options range from 0, slowest, to 1.0, fastest.
 rate={{ fenrir_speech_rate|default(0.65) }}
 
 # Pitch controls the pitch of the voice, select from 0, lowest, to 1.0, highest.
 pitch={{ fenrir_speech_pitch|default(0.5) }}
+
 # Pitch for capital letters
 capitalPitch={{ fenrir_speech_capitalPitch|default(0.9) }}
 
 # Volume controls the loudness of the voice, select from 0, quietest, to 1.0, loudest.
 volume={{ fenrir_speech_volume|default(1.0) }}
 
-# Module is used for Speech-dispatcher, to select the speech module you want to use.
-# Consult Speech-dispatcher's configuration and help Fenrir find out which modules are available.
+# Module used for speech-dispatcher,
+# to select the speech module you want to use.
+# Consult speech-dispatcher's configuration and help Fenrir find out which modules are available.
 # The default is espeak.
 module={{ fenrir_speech_module|default('espeak') }}
 
-# Voice selects the varient you want to use, for example, f5 will use the female voice #5 in Espeak,
-# or if using the Espeak module in Speech-dispatcher. To find out which voices are available, consult the documentation provided with your selected synthesizer.
+# Voice selects the varient you want to use,
+# for example, f5 will use the female voice #5 in Espeak,
+# or if using the espeak module in speech-dispatcher.
+# To find out which voices are available,
+# consult the documentation provided with your selected synthesizer.
 # This also sets the voice used in the generic driver.
 voice={{ fenrir_speech_voice|default('m1') }}
 
@@ -76,7 +82,8 @@ autoReadIncoming={{ (fenrir_speech_autoReadIncoming|default(true))|ternary(True,
 # genericSpeechCommand is the command that is executed for talking
 # the following variables are replaced with values 
 # fenrirText = is the text that should be spoken
-# fenrirModule = may be the speech module like used in speech-dispatcher, not every TTY need this
+# fenrirModule = may be the speech module
+# like used in speech-dispatcher, not every TTY need this
 # fenrirLanguage = the language 
 # fenrirVoice = is the current voice that should be used. Set the voice variable above.
 # the current volume, pitch and rate is calculated like this
@@ -84,10 +91,10 @@ autoReadIncoming={{ (fenrir_speech_autoReadIncoming|default(true))|ternary(True,
 # fenrirVolume = is replaced with the current volume
 # fenrirPitch = is replaced with the current pitch
 # fenrirRate = is replaced with the current speed (speech rate)
-genericSpeechCommand={{ fenrir_speech_genericSpeachCommand|default('fix this') }}
 #genericSpeechCommand=espeak -a fenrirVolume -s fenrirRate -p fenrirPitch -v fenrirVoice -- "fenrirText"
+genericSpeechCommand={{ fenrir_speech_genericSpeechCommand|default('espeak -a fenrirVolume -s fenrirRate -p fenrirPitch -v fenrirVoice -- "fenrirText"') }}
 
-# those are the min and max values of the TTS system that is used in genericSpeechCommand
+# these are the min and max values of the TTS system that is used in genericSpeechCommand
 fenrirMinVolume={{ fenrir_speech_MinVolume|default(0) }}
 fenrirMaxVolume={{ fenrir_speech_MaxVolume|default(200) }}
 fenrirMinPitch={{ fenrir_speech_MinPitch|default(0) }}

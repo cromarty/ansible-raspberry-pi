@@ -69,18 +69,7 @@
   when:
     - ansible_distribution in ["Archlinux","Debian"]
   tags:
-    - fenrir_settings
-
-- name: Replace /etc/fenrirscreenreader/settings/settings-daemon.conf with template
-  template:
-    src: settings-daemon.conf.j2
-    dest: /etc/fenrirscreenreader/settings/settings-daemon.conf
-    backup: yes
-    owner: root
-    group: root
-    mode: 0644
-  when:
-    - ansible_distribution in ["Archlinux","Debian"]
+    - fenrir_conf
 
 
 - name: Arch, copy fenrir.service.arch to /lib/systemd/system/fenrir.service
