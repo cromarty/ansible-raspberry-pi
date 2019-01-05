@@ -84,7 +84,7 @@
     group: root
     mode: 0644
   when:
-    -ansible_distribution == "Archlinux"
+    - ansible_distribution == "Archlinux"
 
 - name: Debian, copy fenrir.service.debian to /lib/systemd/system/fenrir.service
   copy:
