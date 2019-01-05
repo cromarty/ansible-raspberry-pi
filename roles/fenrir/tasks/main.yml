@@ -68,6 +68,8 @@
     mode: 0644
   when:
     - ansible_distribution in ["Archlinux","Debian"]
+  tags:
+    - fenrir_settings
 
 - name: Replace /etc/fenrirscreenreader/settings/settings-daemon.conf with template
   template:

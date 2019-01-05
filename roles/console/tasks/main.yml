@@ -5,6 +5,7 @@
     name: speakup
   when:
     - console_screen_reader | default('speakup') == 'speakup'
+    - not skip_speakup|default(false)
 
 
 - name: Include the fenrir role
@@ -12,6 +13,8 @@
     name: fenrir
   when:
     - console_screen_reader | default('speakup') == 'fenrir'
+    - not skip_fenrir|default(true)
+
 
 - name: Include the emacspeak role
   include_role:

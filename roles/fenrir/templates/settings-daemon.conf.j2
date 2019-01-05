@@ -131,7 +131,7 @@ driver={{ fenrir_daemon_screen_driver|default('vcsaDriver') }}
 encoding={{ fenrir_daemon_screen_encoding|default('auto') }}
 screenUpdateDelay={{ fenrir_daemon_screen_updateDelay|default(0.05) }}
 suspendingScreen={{ fenrir_daemon_screen_suspendingScreen|default('') }}
-autoDetectSuspendingScreen={{ (fenrir_daemon_screen_autoDetectSuspendingScreen|default(true))|ternary(True,False) }}
+autodetectSuspendingScreen={{ (fenrir_daemon_screen_autoDetectSuspendingScreen|default(true))|ternary(True,False) }}
 
 [keyboard]
 driver={{ fenrir_daemon_keyboard_driver|default('evdevDriver') }}
@@ -209,7 +209,6 @@ enable={{ (fenrir_daemon_remote_enable|default(true))|ternary(True,False) }}
 # unixDriver = unix sockets
 # tcpDriver = tcp (localhost only)
 driver={{ fenrir_daemon_remote_driver|default('unixDriver') }}
-driver=unixDriver
 # tcp port
 port={{ fenrir_daemon_remote_port|default('22447') }}
 # socket filepath

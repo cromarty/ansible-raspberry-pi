@@ -65,7 +65,7 @@ module={{ fenrir_speech_module|default('espeak') }}
 # Voice selects the varient you want to use, for example, f5 will use the female voice #5 in Espeak,
 # or if using the Espeak module in Speech-dispatcher. To find out which voices are available, consult the documentation provided with your selected synthesizer.
 # This also sets the voice used in the generic driver.
-voice={{ fenrir_speech_voice|default('en-us') }}
+voice={{ fenrir_speech_voice|default('m1') }}
 
 # Select the language you want Fenrir to use.
 language={{ fenrir_speech_language|default('english-us') }}
@@ -131,7 +131,7 @@ driver={{ fenrir_screen_driver|default('vcsaDriver') }}
 encoding={{ fenrir_screen_encoding|default('auto') }}
 screenUpdateDelay={{ fenrir_screen_updateDelay|default(0.05) }}
 suspendingScreen={{ fenrir_screen_suspendingScreen|default('') }}
-autoDetectSuspendingScreen={{ (fenrir_screen_autoDetectSuspendingScreen|default(true))|ternary(True,False) }}
+autodetectSuspendingScreen={{ (fenrir_screen_autoDetectSuspendingScreen|default(true))|ternary(True,False) }}
 
 [keyboard]
 driver={{ fenrir_keyboard_driver|default('evdevDriver') }}
@@ -209,7 +209,6 @@ enable={{ (fenrir_remote_enable|default(true))|ternary(True,False) }}
 # unixDriver = unix sockets
 # tcpDriver = tcp (localhost only)
 driver={{ fenrir_remote_driver|default('unixDriver') }}
-driver=unixDriver
 # tcp port
 port={{ fenrir_remote_port|default('22447') }}
 # socket filepath

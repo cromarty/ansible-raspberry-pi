@@ -38,5 +38,5 @@
   include_role:
     name: extras
   when:
-    - not skip_extras|default(false)
+    - not skip_extras|default(true)
 

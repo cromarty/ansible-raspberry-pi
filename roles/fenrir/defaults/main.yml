@@ -3,7 +3,6 @@
 default_user: pi
 default_group: pi
 
-skip_fenrir: true
 
 #
 # Below here are lots of settings for putting into

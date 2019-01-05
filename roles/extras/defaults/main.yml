@@ -3,5 +3,4 @@
 default_user: pi
 default_group: pi
 
-skip_extras: false
 

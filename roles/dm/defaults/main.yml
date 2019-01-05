@@ -3,8 +3,6 @@
 default_user: pi
 default_group: pi
 
-skip_desktop_manager: false
-
 desktop_manager: "lightdm"
 enable_desktop_manager: false
 start_desktop_manager: false

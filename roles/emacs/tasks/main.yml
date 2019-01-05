@@ -7,7 +7,6 @@
     update_cache: yes
   when:
     - ansible_distribution == "Archlinux"
-    - not skip_emacs
 
 
 - name: Debian, install emacs-nox and emacs-goodies-el
@@ -17,7 +16,6 @@
     update_cache: yes
   when:
     - ansible_distribution == "Debian"
-    - not skip_emacs
 
 
 

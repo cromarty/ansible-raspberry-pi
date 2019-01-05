@@ -5,8 +5,6 @@ default_user: pi
 default_group: pi
 
 
-skip_speechd: false
-
 
 # speech-dispatcher speechd.conf template variables
 AudioOutputMethod: libao
