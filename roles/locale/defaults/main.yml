@@ -7,7 +7,7 @@ default_group: pi
 default_locale: 'en_GB.UTF-8'
 
 locales:
-  - 'en_GB.utf8'
+  - 'en_GB.UTF-8'
 
 timezone: "Europe/London"
 

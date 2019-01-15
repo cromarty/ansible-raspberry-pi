@@ -4,5 +4,9 @@
   become: yes
   gather_facts: yes
   roles:
-    - hostname
-
+    - locale
+    - speakup
+    - emacspeak
+    - fenrir
+    - yaourt
+    - history

@@ -28,13 +28,6 @@ each does.
 
 Installs the console-mode Braille display driver.
 
-* console
-
-Installs either the 'speakup' console screen reader, or 'fenrir',
-another console mode screen reader, and emacspeak.
-
-Emacspeak can be installed independantly of the screen readers.
-
 * desktop
 
 Will install any of the supported desktops.

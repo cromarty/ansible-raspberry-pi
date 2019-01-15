@@ -82,6 +82,21 @@
     - ansible_distribution == "Archlinux"
 
 
+
+
+- name: Insert emacspeak-setup.el load-file at top of emacs init file
+  blockinfile:
+    path: /etc/skel/.emacs.d/init.el
+    marker: ";; {mark} ANSIBLE MANAGED BLOCK"
+    insertbefore: BOF
+    content: |
+      ;; Load emacspeak extensions
+      (load-file "/usr/local/src/emacspeak/lisp/emacspeak-setup.el")
+  when:
+    - ansible_distribution == "Archlinux"
+
+
+
 - name: Debian, install emacspeak
   apt:
     name: emacspeak,emacspeak-espeak-server

@@ -27,7 +27,7 @@
 
 - name: Arch, install Fenrir dependencies
   pacman:
-    name: dbus,enchant,python-pyenchant
+    name: dbus,enchant,python-pyenchant,python-evdev,python-dbus
     state: latest
     update_cache: yes
   when:
@@ -99,6 +99,8 @@
     enabled: yes
   when:
     - ansible_distribution in ["Archlinux","Debian"]
+    - enable_fenrir_at_boot|default(true)
+
 
 - name: Restart fenrir and reload systemd daemon
   systemd:
@@ -107,6 +109,8 @@
     daemon_reload: yes
   when:
     - ansible_distribution in ["Archlinux","Debian"]
+    - start_fenrir_immediately|default(true)
+
 
 
 

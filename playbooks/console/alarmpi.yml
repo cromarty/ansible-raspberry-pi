@@ -4,7 +4,11 @@
   become: yes
   gather_facts: yes
   roles:
-    - fenrir
+    - locale
+    - speakup
+    - emacspeak
+    - yaourt
+
 
 
 #    - brltty
