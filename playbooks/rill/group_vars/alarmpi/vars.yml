@@ -6,6 +6,7 @@ ansible_become_pass: "{{ vault_ansible_become_pass }}"
 default_user: alarm
 default_group: alarm
 
+# locale stuff
 
 default_locale: "en_US.UTF-8"
 
@@ -16,7 +17,15 @@ timezone: "America/Chicago"
 
 console_keymap: "us"
 
+# end of locale stuff
+
+
 clear_root_history: true
+
+
+enable_ntpd_at_boot: true
+start_ntpd_immediately: true
+
 
 # fenrir installation variables
 enable_fenrir_at_boot: false
