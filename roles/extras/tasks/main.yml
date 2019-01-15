@@ -3,7 +3,7 @@
 
 - name: Arch, install extra packages
   pacman:
-    name: dos2unix,markdown,wget,picocom
+    name: dos2unix,markdown,wget,picocom,arch-install-scripts
     state: latest
     update_cache: yes
   when:

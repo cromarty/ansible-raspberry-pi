@@ -42,26 +42,13 @@
     - ansible_distribution == "Archlinux"
 
 
-- name: Arch, copy the espeak-server-Makefile.patch
-  copy:
-    src: espeak-server-Makefile.patch
-    dest: /tmp
-    user: root
-   group: root
-    mode: 0644
-  when:
-    - ansible_distribution == "Archlinux"
-
-
 - name: Arch, patch the espeak server Makefile
   patch:
-    src: /tmp/espeak-server-Makefile.patch
+    src: espeak-server-Makefile.patch
+    remote_src: false
     dest: "/usr/local/src/emacspeak/{{ emacspeak_espeak_server_path }}/Makefile"
   when:
     - ansible_distribution == "Archlinux"
-
-
-- name: Arch, patch the emacspeak espeak server Makefile to use libespeak-ng
 
 
 - name: make targets

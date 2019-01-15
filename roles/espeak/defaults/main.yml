@@ -3,3 +3,5 @@
 default_user: pi
 default_group: pi
 
+use_espeak_new_generation: true
+

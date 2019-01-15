@@ -1,34 +1,59 @@
 ---
 
-
-#
-# Note that espeakup installation and config is
-# currently broken in Raspbian.
-#
-# This file currently installs
-# espeakup dependencies for Raspbian, but not espeakup itself.
-#
-
-
-- name: Include the espeak role
-  include_role:
-    name: espeak
-
-
-- name: Load speakup_soft for this session
-  modprobe:
-    name: speakup_soft
-    state: present
+- name: Clone espeakup
+  git:
+    repo: "{{ espeakup_git_repository }}"
+    dest: /tmp/espeakup
   when:
     - ansible_distribution in ["Archlinux","Debian"]
 
-- name: Arch, install espeakup
-  pacman:
-    name: espeak,espeakup
-    state: latest
-    update_cache: yes
+
+- name: Patch the espeakup Makefile
+  patch:
+    src: espeakup.Makefile.patch
+    remote_src: false
+    dest: /tmp/espeakup/Makefile
   when:
-    - ansible_distribution == "Archlinux"
+    - ansible_distribution in ["Archlinux","Debian"]
+
+
+- name: make targets
+  make:
+    chdir: /tmp/espeakup
+    target: "{{ item }}"
+  with_items:
+    - all
+    - install
+  when:
+    - ansible_distribution in ["Archlinux","Debian"]
+
+
+- name: Copy the espeakup.service unit file
+  copy:
+    src: espeakup.service
+    dest: /lib/systemd/system/espeakup.service
+    owner: root
+    group: root
+    mode: 0644
+  when:
+    - ansible_distribution in ["Archlinux","Debian"]
+
+
+- name: Copy the espeakup default template
+  template:
+    src: espeakup.default.j2
+    dest: /etc/default/espeakup
+    owner: root
+    group: root
+    mode: 0644
+  when:
+    - ansible_distribution in ["Archlinux","Debian"]
+
+
+- name: Load the speakup kernel modules for this session
+  modprobe:
+    name: speakup_soft
+    state: present
 
 
 - name: Ensure espeakup is started and enabled at boot.
@@ -46,6 +71,4 @@
     daemon_reload: yes
   when:
     - ansible_distribution in ["Archlinux","Debian"]
-
-
 

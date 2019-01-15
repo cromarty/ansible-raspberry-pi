@@ -27,7 +27,7 @@
 
 - name: Arch, install Fenrir dependencies
   pacman:
-    name: dbus
+    name: dbus,enchant,python-pyenchant
     state: latest
     update_cache: yes
   when:
