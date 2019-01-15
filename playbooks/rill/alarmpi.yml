@@ -1,0 +1,8 @@
+---
+
+- hosts: alarmpi
+  become: yes
+  gather_facts: yes
+  roles:
+    - hostname
+

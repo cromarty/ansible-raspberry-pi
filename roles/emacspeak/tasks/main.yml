@@ -49,6 +49,7 @@
     dest: "/usr/local/src/emacspeak/{{ emacspeak_espeak_server_path }}/Makefile"
   when:
     - ansible_distribution == "Archlinux"
+    - use_espeak_new_generation|default(false)
 
 
 - name: make targets
@@ -58,7 +59,13 @@
   with_items:
     - config
     - emacspeak
-    - espeak
+  when:
+    - ansible_distribution == "Archlinux"
+
+
+- name: make the emacspeak espeak server
+  make:
+    chdir: "/usr/local/src/emacspeak/{{ emacspeak_espeak_server_path }}"
   when:
     - ansible_distribution == "Archlinux"
 

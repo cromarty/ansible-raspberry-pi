@@ -1,0 +1,14 @@
+---
+
+- name: Arch, set the hostname
+  hostname:
+    name: "{{ host_name|default('alarmpi') }}"
+  when:
+    - ansible_distribution == "Archlinux"
+
+- name: Debian, set the hostname
+  hostname:
+    name: "{{ host_name|default('raspberrypi') }}"
+  when:
+    - ansible_distribution == "Debian"
+
