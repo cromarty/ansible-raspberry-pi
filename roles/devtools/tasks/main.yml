@@ -33,10 +33,3 @@
   when:
     - ansible_distribution == "Debian"
 
-
-- name: Include the extras role
-  include_role:
-    name: extras
-  when:
-    - not skip_extras|default(true)
-

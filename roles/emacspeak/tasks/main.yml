@@ -33,7 +33,7 @@
     - ansible_distribution == "Archlinux"
 
 
-- name: Clone emacspeak
+- name: Arch, clone emacspeak
   git:
     repo: "{{ git_repository }}"
     version: "{{ emacspeak_git_commit }}"
@@ -52,7 +52,7 @@
     - use_espeak_new_generation|default(false)
 
 
-- name: make targets
+- name: Arch, make targets
   make:
     chdir: /usr/local/src/emacspeak
     target: "{{ item }}"
@@ -63,14 +63,14 @@
     - ansible_distribution == "Archlinux"
 
 
-- name: make the emacspeak espeak server
+- name: Arch, make the emacspeak espeak server
   make:
     chdir: "/usr/local/src/emacspeak/{{ emacspeak_espeak_server_path }}"
   when:
     - ansible_distribution == "Archlinux"
 
 
-- name: Insert emacspeak-setup.el load-file at top of emacs init file
+- name: Arch, insert emacspeak-setup.el load-file at top of emacs init file
   blockinfile:
     path: "/home/{{ default_user }}/.emacs.d/init.el"
     marker: ";; {mark} ANSIBLE MANAGED BLOCK"
@@ -82,9 +82,7 @@
     - ansible_distribution == "Archlinux"
 
 
-
-
-- name: Insert emacspeak-setup.el load-file at top of emacs init file
+- name: Arch, insert emacspeak-setup.el load-file at top of emacs init file
   blockinfile:
     path: /etc/skel/.emacs.d/init.el
     marker: ";; {mark} ANSIBLE MANAGED BLOCK"
@@ -95,6 +93,13 @@
   when:
     - ansible_distribution == "Archlinux"
 
+
+- name: Arch, remove the emacspeak .git directory
+  file:
+    path: /usr/local/src/emacspeak/.git
+    state: absent
+  when:
+    - ansible_distribution == "Archlinux"
 
 
 - name: Debian, install emacspeak

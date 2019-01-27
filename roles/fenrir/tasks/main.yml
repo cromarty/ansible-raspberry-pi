@@ -35,7 +35,7 @@
 
 - name: Debian, install Fenrir dependencies
   apt:
-    name: dbus,libdbus-glib-1-dev
+    name: dbus,libdbus-glib-1-dev,python3-pip
     state: latest
     update_cache: yes
   when:
@@ -85,7 +85,7 @@
 - name: Debian, copy fenrir.service.debian to /lib/systemd/system/fenrir.service
   copy:
     src: fenrir.service.debian
-    dest: /lib/systemd/system
+    dest: /lib/systemd/system/fenrir.service
     owner: root
     group: root
     mode: 0644
@@ -110,8 +110,4 @@
   when:
     - ansible_distribution in ["Archlinux","Debian"]
     - start_fenrir_immediately|default(true)
-
-
-
-
 

@@ -9,7 +9,17 @@ locales:
 
 
 
-skip_emacspeak: false
+skip_speakup: no
+skip_fenrir: no
+skip_emacspeak: no
+skip_brltty: yes
+
+enable_fenrir_at_boot: no
+start_fenrir_immediately: no
+
+enable_espeakup_at_boot: yes
+start_espeakup_immediately: yes
+
 
 desktop: "i3"
 

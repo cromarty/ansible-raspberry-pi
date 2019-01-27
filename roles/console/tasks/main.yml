@@ -1,0 +1,27 @@
+---
+
+- name: Include the speakup role
+  include_role:
+    name: speakup
+  when:
+    - not skip_speakup|default(False)
+
+
+- name: Include the fenrir role
+  include_role:
+    name: fenrir
+  when:
+    - not skip_fenrir|default(True)
+
+- name: Include the emacspeak role
+  include_role:
+    name: emacspeak
+  when:
+    - not skip_emacspeak|default(False)
+
+- name: Include the brltty role
+  include_role:
+    name: brltty
+  when:
+    - not skip_brltty|default(True)
+

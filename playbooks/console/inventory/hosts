@@ -3,5 +3,5 @@ alarmpi01 ansible_host=192.168.0.102
 
 
 [raspbian]
-raspbian01 ansible_host=192.168.0.103 ansible_python_interpreter=python3
+raspbian01 ansible_host=192.168.0.102 ansible_python_interpreter=python3
 

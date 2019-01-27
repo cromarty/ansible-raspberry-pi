@@ -24,7 +24,7 @@
     state: started
     enabled: yes
   when:
-    - ansible_distribution in ["Archlinux","Debian"]
+    - ansible_distribution == "Archlinux"
     - enable_ntpd_at_boot|default(true)
 
 
@@ -34,7 +34,7 @@
     state: restarted
     daemon_reload: yes
   when:
-    - ansible_distribution in ["Archlinux","Debian"]
+    - ansible_distribution == "Archlinux"
     - start_ntpd_immediately|default(true)
 
 
