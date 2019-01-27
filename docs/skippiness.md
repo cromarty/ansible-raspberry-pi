@@ -19,12 +19,17 @@ conditionally control the inclusion of these roles:
 * speakup
 * fenrir
 * emacspeak
+* brltty
 
-So in a 'playbook' which calls the 'console' role, the user can choose which screen reader is installed and whether emacspeak is installed, by setting these variables in the 'playbook' which calls the 'console' role:
+So in a 'playbook' which calls the 'console' role, the user can choose
+which screen reader is installed and whether emacspeak and brltty are
+installed, by setting these variables in the 'playbook' which calls
+the 'console' role:
 
 * skip_speakup
 * skip_fenrir
 * skip_emacspeak
+* skip_brltty
 
 All but skip_speakup are defaulted to 'true'.
 

@@ -68,8 +68,6 @@
     mode: 0644
   when:
     - ansible_distribution in ["Archlinux","Debian"]
-  tags:
-    - fenrir_conf
 
 
 - name: Arch, copy fenrir.service.arch to /lib/systemd/system/fenrir.service
