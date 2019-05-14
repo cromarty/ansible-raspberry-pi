@@ -1,0 +1,10 @@
+---
+
+- name: Debian, install nginx-light
+  apt:
+    name: nginx-light
+    state: latest
+    update_cache: yes
+  when:
+    - ansible_distribution == "Debian"
+

@@ -1,0 +1,22 @@
+---
+
+- name: Debian, replace /etc/network/interfaces
+  copy:
+    src: interfaces
+    dest: /etc/network/interfaces
+    owner: root
+    group: root
+    mode: 0644
+  when:
+    - ansible_distribution == "Debian"
+
+
+- name: Debian, install network-manager
+  apt:
+    name: network-manager
+    status: latest
+    update_cache: yes
+  when:
+    - ansible_distribution == "Debian"
+
+

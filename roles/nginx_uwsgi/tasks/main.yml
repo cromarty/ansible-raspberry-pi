@@ -1,0 +1,37 @@
+---
+
+- name: Debian, include the nginx_light role
+  include_role:
+    name: nginx_light
+  when:
+    - ansible_distribution == "Debian"
+
+- name: Debian, copy the modified nginx.conf
+  copy:
+    src: conf.d.nginx.conf
+    dest: /etc/nginx/conf.d/nginx.conf
+    owner: root
+    group: root
+    mode: 0644
+  when:
+    - ansible_distribution == "Debian"
+
+- name: Debian, replace main nginx.conf
+  copy:
+    src: nginx.conf
+    dest: /etc/nginx/
+    owner: root
+    group: root
+    mode: 0644
+  when:
+    - ansible_distribution == "Debian"
+
+- name: Debian, copy uwsgi.ini
+  copy:
+    src: uwsgi.ini
+    dest: /etc/uwsgi/
+
+
+
+../files/supervisord.conf
+
