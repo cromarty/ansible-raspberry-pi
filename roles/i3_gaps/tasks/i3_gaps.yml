@@ -1,0 +1,49 @@
+---
+
+- name: Include the sound role
+  include_role:
+    name: sound
+
+
+- name: Include the devtools role
+  include_role:
+    name: devtools
+  when:
+    - ansible_distribution == "Debian"
+
+
+- name: Debian, clone i3-gaps
+  git:
+    repo: "{{ i3_gaps_repository }}"
+    dest: /tmp/i3_gaps
+
+
+- name: autoreconf -fi in i3_gaps
+  command: "autoreconf --install --force"
+  args:
+    chdir: /tmp/i3_gaps
+
+- name: Make build directory
+  file:
+    path: /tmp/i3_gaps/build
+    state: directory
+    mode: 0755
+
+- name: Run ./configure for i3_gaps
+  command: "../configure --prefix=/usr --sysconfdir=/etc --disable-sanitizers"
+  environment:
+    PKG_CONFIG_PATH: /usr/lib/arm-linux-gnueabihf:/usr/lib/arm-linux-gnueabihf/pkgconfig:/usr/lib/pkgconfig:/usr/share/pkgconfig
+  args:
+    chdir: /tmp/i3_gaps/build
+
+
+- name: Make i3_gaps
+  make:
+    chdir: /tmp/i3_gaps/build
+
+
+- name: make install i3_gaps
+  make:
+    target: install
+    chdir: /tmp/i3_gaps/build
+

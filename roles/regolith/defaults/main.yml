@@ -1,0 +1,6 @@
+---
+
+default_user: pi
+
+regolith_i3_repository: "https://github.com/regolith-linux/regolith-i3"
+

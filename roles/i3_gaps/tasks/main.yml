@@ -1,35 +1,11 @@
 ---
 
-- name: Include the sound role
-  include_role:
-    name: sound
+- name: Import tasks from dependencies.yml
+  import_tasks: dependencies.yml
 
 
-- name: Include the devtools role
-  include_role:
-    name: devtools
-  when:
-    - ansible_distribution == "Debian"
 
-
-- name: Debian, clone i3-gaps
-  git:
-    repo: "{{ i3_gaps__repository }}"
-    version: "{{ emacspeak_git_commit }}"
-    dest: "/home/{{ default_user }}"
-
-
-# autoreconf in here
-
-
-#- name: Arch, make targets
-#  make:
-#    chdir: /usr/local/src/emacspeak
-#    target: "{{ item }}"
-#  with_items:
-#    - all
-#  when:
-#    - ansible_distribution == "Archlinux"
-
+- name: Import tasks from i3_gaps
+  import_tasks: i3_gaps.yml
 
 

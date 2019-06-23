@@ -1,0 +1,43 @@
+---
+
+- name: Include the sound role
+  include_role:
+    name: sound
+
+
+- name: Include the devtools role
+  include_role:
+    name: devtools
+  when:
+    - ansible_distribution == "Debian"
+
+
+- name: Debian, clone regolith-i3
+  git:
+    repo: "{{ regolith_i3_repository }}"
+    dest: /tmp/regolith_i3
+
+
+- name: autoreconf -fi in regolith_i3
+  command: "autoreconf --install --force"
+  args:
+    chdir: /tmp/regolith_i3
+
+- name: Make build directory
+  file:
+    path: /tmp/regolith_i3/build
+    state: directory
+    mode: 0755
+
+- name: Run ./configure for regolith_i3
+  command: "../configure --prefix=/usr --sysconfdir=/etc --disable-sanitizers"
+  environment:
+    PKG_CONFIG_PATH: /usr/lib/arm-linux-gnueabihf:/usr/lib/arm-linux-gnueabihf/pkgconfig:/usr/lib/pkgconfig:/usr/share/pkgconfig
+  args:
+    chdir: /tmp/regolith_i3/build
+
+
+- name: Make regolith_i3
+  make:
+    chdir: /tmp/regolith_i3/build
+
