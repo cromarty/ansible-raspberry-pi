@@ -1,0 +1,6 @@
+---
+
+default_user: pi
+
+i3_gaps_repository: "https://github.com/Airblaider/i3.git"
+

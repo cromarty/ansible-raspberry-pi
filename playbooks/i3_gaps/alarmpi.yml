@@ -1,0 +1,14 @@
+---
+
+- hosts: alarmpi
+  become: yes
+  gather_facts: yes
+  roles:
+    - locale
+    - ntp
+    - speakup
+    - emacspeak
+    - fenrir
+    - yaourt
+    - kpartx
+    - history
