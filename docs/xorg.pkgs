@@ -1,3 +1,6 @@
+
+# This is a list of the packages contained in the xorg Debian meta-package
+
 libdrm-amdgpu1
 libdrm-freedreno1
 libdrm-nouveau2

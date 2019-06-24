@@ -27,7 +27,7 @@
 
 - name: Debian, install development tools
   apt:
-    name: build-essential,git,intltool
+    name: build-essential,git,intltool,autoconf
     state: latest
     update_cache: yes
   when:
