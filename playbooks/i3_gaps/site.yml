@@ -4,5 +4,7 @@
   become: yes
   gather_facts: yes
   roles:
+    - xserver
     - i3_gaps
-
+    - xinit
+    - orca

@@ -10,6 +10,7 @@ clear_root_history: true
 enable_ntpd_at_boot: true
 start_ntpd_immediately: true
 
+desktop: "i3"
 
 # fenrir installation variables
 enable_fenrir_at_boot: false

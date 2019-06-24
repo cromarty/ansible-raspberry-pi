@@ -1,48 +1,555 @@
 ---
 
-- name: Debian install X dependencies pt1
+- name: Debian update cache
   apt:
-    name: [libdrm-amdgpu1,libdrm-freedreno1,libdrm-nouveau2,libdrm-radeon1,libegl1-mesa,libepoxy0,libevdev2,libfontenc1,libgbm1,libgl1-mesa-dri,libgl1-mesa-glx]
     update_cache: yes
+
+
+- name: Debian install libdrm-amdgpu1
+  apt:
+    name: libdrm-amdgpu1
+    update_cache: no
   when:
     - ansible_distribution == "Debian"
+    - not skip_libdrm_amdgpu1|default(no)
 
 
-- name: Debian install X dependencies pt2
+- name: Debian install libdrm-freedreno1
   apt:
-    name: [libglapi-mesa,libglu1-mesa,libgudev-1.0-0,libinput10,libinput-bin,libllvm3.9,libmtdev1,libpciaccess0,libsensors4,libtxc-dxtn-s2tc,libwacom2]
-    update_cache: yes
+    name: libdrm-freedreno1
+    update_cache: no
   when:
     - ansible_distribution == "Debian"
+    - not skip_libdrm_freedreno1|default(no)
 
 
-- name: Debian install X dependencies pt3
+- name: Debian install libdrm-nouveau2
   apt:
-    name: [libwacom-common,libwayland-client0,libwayland-server0,libxaw7,libxcb-dri2-0,libxcb-dri3-0,libxcb-glx0,libxcb-present0,libxcb-sync1,libxcb-xfixes0]
-    update_cache: yes
+    name: libdrm-nouveau2
+    update_cache: no
   when:
     - ansible_distribution == "Debian"
+    - not skip_libdrm_nouveau2|default(no)
 
 
-- name: Debian install X dependencies pt4
+- name: Debian install libdrm-radeon1
   apt:
-    name: [libxcomposite1,libxcursor1,libxdamage1,libxfixes3,libxfont2,libxi6,libxinerama1,libxkbfile1,libxmu6,libxpm4,libxrandr2,libxres1,libxshmfence1]
-    update_cache: yes
+    name: libdrm-radeon1
+    update_cache: no
   when:
     - ansible_distribution == "Debian"
+    - not skip_libdrm_radeon1|default(no)
 
 
-- name: Debian install X dependencies pt5
+- name: Debian install libegl1-mesa
   apt:
-    name: [libxss1,libxt6,libxtst6,libxv1,libxxf86dga1,libxxf86vm1,x11-utils,x11-xkb-utils,x11-xserver-utils,xinit,xserver-common,xserver-xorg-core]
-    update_cache: yes
+    name: libegl1-mesa
+    update_cache: no
   when:
     - ansible_distribution == "Debian"
+    - not skip_libegl1_mesa|default(no)
 
 
-- name: Debian install X dependencies pt6
+- name: Debian install libepoxy0
   apt:
-    name: [xserver-xorg-input-all,xserver-xorg-input-libinput,xserver-xorg,xserver-xorg-video-fbdev]
-    update_cache: yes
+    name: libepoxy0
+    update_cache: no
   when:
     - ansible_distribution == "Debian"
+    - not skip_libepoxy0|default(no)
+
+
+- name: Debian install libevdev2
+  apt:
+    name: libevdev2
+    update_cache: no
+  when:
+    - ansible_distribution == "Debian"
+    - not skip_libevdev2|default(no)
+
+
+- name: Debian install libfontenc1
+  apt:
+    name: libfontenc1
+    update_cache: no
+  when:
+    - ansible_distribution == "Debian"
+    - not skip_libfontenc1|default(no)
+
+
+- name: Debian install libgbm1
+  apt:
+    name: libgbm1
+    update_cache: no
+  when:
+    - ansible_distribution == "Debian"
+    - not skip_libgbm1|default(no)
+
+
+- name: Debian install libgl1-mesa-dri
+  apt:
+    name: libgl1-mesa-dri
+    update_cache: no
+  when:
+    - ansible_distribution == "Debian"
+    - not skip_libgl1_mesa_dri|default(no)
+
+
+- name: Debian install libgl1-mesa-glx
+  apt:
+    name: libgl1-mesa-glx
+    update_cache: no
+  when:
+    - ansible_distribution == "Debian"
+    - not skip_libgl1_mesa_glx|default(no)
+
+
+- name: Debian install libglapi-mesa
+  apt:
+    name: libglapi-mesa
+    update_cache: no
+  when:
+    - ansible_distribution == "Debian"
+    - not skip_libglapi_mesa|default(no)
+
+
+- name: Debian install libglu1-mesa
+  apt:
+    name: libglu1-mesa
+    update_cache: no
+  when:
+    - ansible_distribution == "Debian"
+    - not skip_libglu1_mesa|default(no)
+
+
+- name: Debian install libgudev-1.0-0
+  apt:
+    name: libgudev-1.0-0
+    update_cache: no
+  when:
+    - ansible_distribution == "Debian"
+    - not skip_libgudev_1_0_0|default(no)
+
+
+- name: Debian install libinput10
+  apt:
+    name: libinput10
+    update_cache: no
+  when:
+    - ansible_distribution == "Debian"
+    - not skip_libinput10|default(no)
+
+
+- name: Debian install libinput-bin
+  apt:
+    name: libinput-bin
+    update_cache: no
+  when:
+    - ansible_distribution == "Debian"
+    - not skip_libinput_bin|default(no)
+
+
+- name: Debian install libllvm3.9
+  apt:
+    name: libllvm3.9
+    update_cache: no
+  when:
+    - ansible_distribution == "Debian"
+    - not skip_libllvm3_9|default(no)
+
+
+- name: Debian install libmtdev1
+  apt:
+    name: libmtdev1
+    update_cache: no
+  when:
+    - ansible_distribution == "Debian"
+    - not skip_libmtdev1|default(no)
+
+
+- name: Debian install libpciaccess0
+  apt:
+    name: libpciaccess0
+    update_cache: no
+  when:
+    - ansible_distribution == "Debian"
+    - not skip_libpciaccess0|default(no)
+
+
+- name: Debian install libsensors4
+  apt:
+    name: libsensors4
+    update_cache: no
+  when:
+    - ansible_distribution == "Debian"
+    - not skip_libsensors4|default(no)
+
+
+- name: Debian install libtxc-dxtn-s2tc
+  apt:
+    name: libtxc-dxtn-s2tc
+    update_cache: no
+  when:
+    - ansible_distribution == "Debian"
+    - not skip_libtxc_dxtn_s2tc|default(no)
+
+
+- name: Debian install libwacom2
+  apt:
+    name: libwacom2
+    update_cache: no
+  when:
+    - ansible_distribution == "Debian"
+    - not skip_libwacom2|default(no)
+
+
+- name: Debian install libwacom-common
+  apt:
+    name: libwacom-common
+    update_cache: no
+  when:
+    - ansible_distribution == "Debian"
+    - not skip_libwacom_common|default(no)
+
+
+- name: Debian install libwayland-client0
+  apt:
+    name: libwayland-client0
+    update_cache: no
+  when:
+    - ansible_distribution == "Debian"
+    - not skip_libwayland_client0|default(no)
+
+
+- name: Debian install libwayland-server0
+  apt:
+    name: libwayland-server0
+    update_cache: no
+  when:
+    - ansible_distribution == "Debian"
+    - not skip_libwayland_server0|default(no)
+
+
+- name: Debian install libxaw7
+  apt:
+    name: libxaw7
+    update_cache: no
+  when:
+    - ansible_distribution == "Debian"
+    - not skip_libxaw7|default(no)
+
+
+- name: Debian install libxcb-dri2-0
+  apt:
+    name: libxcb-dri2-0
+    update_cache: no
+  when:
+    - ansible_distribution == "Debian"
+    - not skip_libxcb_dri2_0|default(no)
+
+
+- name: Debian install libxcb-dri3-0
+  apt:
+    name: libxcb-dri3-0
+    update_cache: no
+  when:
+    - ansible_distribution == "Debian"
+    - not skip_libxcb_dri3_0|default(no)
+
+
+- name: Debian install libxcb-glx0
+  apt:
+    name: libxcb-glx0
+    update_cache: no
+  when:
+    - ansible_distribution == "Debian"
+    - not skip_libxcb_glx0|default(no)
+
+
+- name: Debian install libxcb-present0
+  apt:
+    name: libxcb-present0
+    update_cache: no
+  when:
+    - ansible_distribution == "Debian"
+    - not skip_libxcb_present0|default(no)
+
+
+- name: Debian install libxcb-sync1
+  apt:
+    name: libxcb-sync1
+    update_cache: no
+  when:
+    - ansible_distribution == "Debian"
+    - not skip_libxcb_sync1|default(no)
+
+
+- name: Debian install libxcb-xfixes0
+  apt:
+    name: libxcb-xfixes0
+    update_cache: no
+  when:
+    - ansible_distribution == "Debian"
+    - not skip_libxcb_xfixes0|default(no)
+
+
+- name: Debian install libxcomposite1
+  apt:
+    name: libxcomposite1
+    update_cache: no
+  when:
+    - ansible_distribution == "Debian"
+    - not skip_libxcomposite1|default(no)
+
+
+- name: Debian install libxcursor1
+  apt:
+    name: libxcursor1
+    update_cache: no
+  when:
+    - ansible_distribution == "Debian"
+    - not skip_libxcursor1|default(no)
+
+
+- name: Debian install libxdamage1
+  apt:
+    name: libxdamage1
+    update_cache: no
+  when:
+    - ansible_distribution == "Debian"
+    - not skip_libxdamage1|default(no)
+
+
+- name: Debian install libxfixes3
+  apt:
+    name: libxfixes3
+    update_cache: no
+  when:
+    - ansible_distribution == "Debian"
+    - not skip_libxfixes3|default(no)
+
+
+- name: Debian install libxfont2
+  apt:
+    name: libxfont2
+    update_cache: no
+  when:
+    - ansible_distribution == "Debian"
+    - not skip_libxfont2|default(no)
+
+
+- name: Debian install libxi6
+  apt:
+    name: libxi6
+    update_cache: no
+  when:
+    - ansible_distribution == "Debian"
+    - not skip_libxi6|default(no)
+
+
+- name: Debian install libxinerama1
+  apt:
+    name: libxinerama1
+    update_cache: no
+  when:
+    - ansible_distribution == "Debian"
+    - not skip_libxinerama1|default(no)
+
+
+- name: Debian install libxkbfile1
+  apt:
+    name: libxkbfile1
+    update_cache: no
+  when:
+    - ansible_distribution == "Debian"
+    - not skip_libxkbfile1|default(no)
+
+
+- name: Debian install libxmu6
+  apt:
+    name: libxmu6
+    update_cache: no
+  when:
+    - ansible_distribution == "Debian"
+    - not skip_libxmu6|default(no)
+
+
+- name: Debian install libxpm4
+  apt:
+    name: libxpm4
+    update_cache: no
+  when:
+    - ansible_distribution == "Debian"
+    - not skip_libxpm4|default(no)
+
+
+- name: Debian install libxrandr2
+  apt:
+    name: libxrandr2
+    update_cache: no
+  when:
+    - ansible_distribution == "Debian"
+    - not skip_libxrandr2|default(no)
+
+
+- name: Debian install libxres1
+  apt:
+    name: libxres1
+    update_cache: no
+  when:
+    - ansible_distribution == "Debian"
+    - not skip_libxres1|default(no)
+
+
+- name: Debian install libxshmfence1
+  apt:
+    name: libxshmfence1
+    update_cache: no
+  when:
+    - ansible_distribution == "Debian"
+    - not skip_libxshmfence1|default(no)
+
+
+- name: Debian install libxss1
+  apt:
+    name: libxss1
+    update_cache: no
+  when:
+    - ansible_distribution == "Debian"
+    - not skip_libxss1|default(no)
+
+
+- name: Debian install libxt6
+  apt:
+    name: libxt6
+    update_cache: no
+  when:
+    - ansible_distribution == "Debian"
+    - not skip_libxt6|default(no)
+
+
+- name: Debian install libxtst6
+  apt:
+    name: libxtst6
+    update_cache: no
+  when:
+    - ansible_distribution == "Debian"
+    - not skip_libxtst6|default(no)
+
+
+- name: Debian install libxv1
+  apt:
+    name: libxv1
+    update_cache: no
+  when:
+    - ansible_distribution == "Debian"
+    - not skip_libxv1|default(no)
+
+
+- name: Debian install libxxf86dga1
+  apt:
+    name: libxxf86dga1
+    update_cache: no
+  when:
+    - ansible_distribution == "Debian"
+    - not skip_libxxf86dga1|default(no)
+
+
+- name: Debian install libxxf86vm1
+  apt:
+    name: libxxf86vm1
+    update_cache: no
+  when:
+    - ansible_distribution == "Debian"
+    - not skip_libxxf86vm1|default(no)
+
+
+- name: Debian install x11-utils
+  apt:
+    name: x11-utils
+    update_cache: no
+  when:
+    - ansible_distribution == "Debian"
+    - not skip_x11_utils|default(no)
+
+
+- name: Debian install x11-xkb-utils
+  apt:
+    name: x11-xkb-utils
+    update_cache: no
+  when:
+    - ansible_distribution == "Debian"
+    - not skip_x11_xkb_utils|default(no)
+
+
+- name: Debian install x11-xserver-utils
+  apt:
+    name: x11-xserver-utils
+    update_cache: no
+  when:
+    - ansible_distribution == "Debian"
+    - not skip_x11_xserver_utils|default(no)
+
+
+- name: Debian install xinit
+  apt:
+    name: xinit
+    update_cache: no
+  when:
+    - ansible_distribution == "Debian"
+    - not skip_xinit|default(no)
+
+
+- name: Debian install xserver-common
+  apt:
+    name: xserver-common
+    update_cache: no
+  when:
+    - ansible_distribution == "Debian"
+    - not skip_xserver_common|default(no)
+
+
+- name: Debian install xserver-xorg-core
+  apt:
+    name: xserver-xorg-core
+    update_cache: no
+  when:
+    - ansible_distribution == "Debian"
+    - not skip_xserver_xorg_core|default(no)
+
+
+- name: Debian install xserver-xorg-input-all
+  apt:
+    name: xserver-xorg-input-all
+    update_cache: no
+  when:
+    - ansible_distribution == "Debian"
+    - not skip_xserver_xorg_input_all|default(no)
+
+
+- name: Debian install xserver-xorg-input-libinput
+  apt:
+    name: xserver-xorg-input-libinput
+    update_cache: no
+  when:
+    - ansible_distribution == "Debian"
+    - not skip_xserver_xorg_input_libinput|default(no)
+
+
+- name: Debian install xserver-xorg
+  apt:
+    name: xserver-xorg
+    update_cache: no
+  when:
+    - ansible_distribution == "Debian"
+    - not skip_xserver_xorg|default(no)
+
+
+- name: Debian install xserver-xorg-video-fbdev
+  apt:
+    name: xserver-xorg-video-fbdev
+    update_cache: no
+  when:
+    - ansible_distribution == "Debian"
+    - not skip_xserver_xorg_video_fbdev|default(no)
+

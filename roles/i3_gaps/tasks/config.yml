@@ -1,0 +1,26 @@
+---
+
+- name: Debian install dex
+  apt:
+    name: dex
+  when:
+    - ansible_distribution == "Debian"
+
+- name: Install .xinitrc file
+  template:
+    src: xinitrc.j2
+    dest: "/home/{{ default_user }}/.xinitrc"
+    owner: "{{ default_user }}"
+    group: "{{ default_group }}"
+    mode: 0755
+
+
+- name: Install i3 config file
+  file:
+    src: i3.config
+    dest: "/home/{{ default_user }}/.config/i3/config"
+    owner: "{{ default_user }}"
+    group: "{{ default_group }}"
+    mode: 0644
+
+

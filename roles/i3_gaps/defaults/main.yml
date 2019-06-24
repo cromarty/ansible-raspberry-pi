@@ -1,6 +1,11 @@
 ---
 
 default_user: pi
+default_group: pi
+
+raspberry_pi: yes
 
 i3_gaps_repository: "https://github.com/Airblader/i3.git"
+
+xinit_exec_string: "i3"
 

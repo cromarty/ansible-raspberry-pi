@@ -5,7 +5,11 @@
 
 
 
-- name: Import tasks from i3_gaps
-  import_tasks: i3_gaps.yml
+- name: Import tasks from build.yml
+  import_tasks: build.yml
+
+
+- name: Import tasks from config.yml
+  import_tasks: config.yml
 
 

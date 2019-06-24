@@ -1,4 +1,5 @@
 ---
+
 - name: Include the xinit role
   include_role:
     name: xinit

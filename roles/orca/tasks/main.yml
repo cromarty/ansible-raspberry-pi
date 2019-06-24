@@ -47,7 +47,7 @@
     group: root
     mode: 0755
   when:
-    - desktop_manager == "lightdm"
+    - desktop_manager is defined and desktop_manager == "lightdm"
 
 
 
