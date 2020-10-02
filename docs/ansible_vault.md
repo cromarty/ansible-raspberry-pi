@@ -63,10 +63,10 @@ If Ansible tells you it was successful, you now have an encrypted vault.yml.
 When you run a playbook:
 
 ```
-ansible-playbook --ask-vault-pass playbook.yml
+ansible-playbook --ask-vault-password playbook.yml
 ```
 
-The '--ask-vault-pass' switch will prompt you for the password you ued
+The '--ask-vault-password' switch will prompt you for the password you ued
 to encrypt the vault.
 
 The 'vault_ansible_become_pass' variable in the vault is the password
@@ -85,7 +85,7 @@ code against.
 
 
 
-default_user: pi
-default_group: pi
+
+
 
 

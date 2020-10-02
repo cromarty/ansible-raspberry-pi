@@ -4,7 +4,7 @@ To run the code in this repository against machines remote to the one
 running the code, you will need to generate SSH keys on the local
 machine and transfer them to the remote machine(s).
 
-To generate SSH keys if you do not already hve them:
+To generate SSH keys if you do not already have them:
 
 ```
 ssh-keygen
@@ -52,8 +52,25 @@ ssh pi@raspberrypi
 
 Test it to make sure.
 
-And now, assuming you have the right password in your Ansible vaults, see the file 'ansible_vault.md' in this directory, you can run playbooks against that machine.
+And now, assuming you have the right password in your Ansible vaults, see the
+file 'ansible_vault.md' in this directory, you can run playbooks against that
+machine.
 
-Note that any machine you instend to configure in this way will need 'dmidecode' installed on it, and a corrct version of Python.
+Note that any machine you intend to configure in this way will need 'dmidecode'
+installed on it, and a correct version of Python.
 
-Don't enter a password.
+Note that from Ansible 2.12 using:
+
+```
+ansible_python_interpreter=python
+```
+
+Will be deprecated. Make all entries for hosts:
+
+```
+ansible_python_interpreter=python3
+```
+
+
+
+Even if Python 3.x is the only version installed on any hosts being configured.
