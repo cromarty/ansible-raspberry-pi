@@ -1,20 +1,20 @@
 ---
 
-- name: Debian, install wpasupplicant
+- name: Debian/Ubuntu, install wpasupplicant
   apt:
     name: wpasupplicant
     state: latest
     update_cache: yes
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
 
-- name: Debian, run wpa_passphrase and cat the results into wpa_supplicant.conf
+- name: Debian/Ubuntu, run wpa_passphrase and cat the results into wpa_supplicant.conf
   command: >
     wpa_passphrase \
     "{{ wifi_ssid }} {{ wifi_passphrase }}" >> \
     /etc/wpa_supplicant/wpa_supplicant.conf
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
     - defined wifi_ssid
     - defined wifi_passphrase
 

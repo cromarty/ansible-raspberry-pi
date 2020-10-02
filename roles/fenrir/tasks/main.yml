@@ -33,13 +33,13 @@
   when:
     - ansible_distribution == "Archlinux"
 
-- name: Debian, install Fenrir dependencies
+- name: Debian/Ubuntu, install Fenrir dependencies
   apt:
     name: dbus,libdbus-glib-1-dev,python3-pip
     state: latest
     update_cache: yes
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
 
 
 - name: Arch, install Fenrir screen reader from PyPI
@@ -51,11 +51,11 @@
 
 
 
-- name: Debian, install Fenrir with pip using git
+- name: Debian/Ubuntu, install Fenrir with pip using git
   pip:
     name: git+https://github.com/chrys87/fenrir.git
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
 
 
 - name: Replace /etc/fenrirscreenreader/settings/settings.conf with template
@@ -67,7 +67,7 @@
     group: root
     mode: 0644
   when:
-    - ansible_distribution in ["Archlinux","Debian"]
+    - ansible_distribution in ["Archlinux","Debian","Ubuntu"]
 
 
 - name: Arch, copy fenrir.service.arch to /lib/systemd/system/fenrir.service
@@ -80,7 +80,7 @@
   when:
     - ansible_distribution == "Archlinux"
 
-- name: Debian, copy fenrir.service.debian to /lib/systemd/system/fenrir.service
+- name: Debian/Ubuntu, copy fenrir.service.debian to /lib/systemd/system/fenrir.service
   copy:
     src: fenrir.service.debian
     dest: /lib/systemd/system/fenrir.service
@@ -88,7 +88,7 @@
     group: root
     mode: 0644
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
 
 - name: Ensure fenrir is started and enabled at boot.
   systemd:
@@ -96,7 +96,7 @@
     state: started
     enabled: yes
   when:
-    - ansible_distribution in ["Archlinux","Debian"]
+    - ansible_distribution in ["Archlinux","Debian","Ubuntu"]
     - enable_fenrir_at_boot|default(true)
 
 
@@ -106,6 +106,6 @@
     state: restarted
     daemon_reload: yes
   when:
-    - ansible_distribution in ["Archlinux","Debian"]
+    - ansible_distribution in ["Archlinux","Debian","Ubuntu"]
     - start_fenrir_immediately|default(true)
 

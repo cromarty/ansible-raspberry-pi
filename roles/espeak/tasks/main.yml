@@ -22,21 +22,21 @@
 # stretch onwards
 #
 
-- name: Debian, install espeak-ng and libespeak-ng-dev
+- name: Debian/Ubuntu, install espeak-ng and libespeak-ng-dev
   apt:
     name: espeak-ng,libespeak-ng-dev
     state: latest
     update_cache: yes
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
     - use_espeak_new_generation|default(false)
 
-- name: Debian, install espeak and libespeak-dev (not ng)
+- name: Debian/Ubuntu, install espeak and libespeak-dev (not ng)
   apt:
     name: espeak,libespeak-dev
     state: latest
     update_cache: yes
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
     - not use_espeak_new_generation|default(false)
 

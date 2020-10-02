@@ -10,11 +10,11 @@
   when:
     - ansible_distribution == "Archlinux"
 
-- name: Debian, copy README.md template to default user home directory
+- name: Debian/Ubuntu, copy README.md template to default user home directory
   template:
     src: README.md.raspbian.j2
     dest: "/home/{{ default_user}}/README.md"
     mode: 0644
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
 

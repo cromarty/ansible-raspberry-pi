@@ -102,12 +102,12 @@
     - ansible_distribution == "Archlinux"
 
 
-- name: Debian, install emacspeak
+- name: Debian/Ubuntu, install emacspeak
   apt:
     name: emacspeak,emacspeak-espeak-server
     state: latest
     update_cache: yes
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
 
 

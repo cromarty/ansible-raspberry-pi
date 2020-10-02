@@ -11,7 +11,7 @@
   when:
     - ansible_distribution == "Archlinux"
 
-- name: Debian, install xbindkeys and xdotool
+- name: Debian/Ubuntu, install xbindkeys and xdotool
   apt:
     name: xbindkeys,xdotool
     state: latest

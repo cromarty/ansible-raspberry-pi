@@ -9,11 +9,11 @@
   when:
     - ansible_distribution == "Archlinux"
 
-- name: Debian, install markdown
+- name: Debian/Ubuntu, install markdown
   apt:
     name: markdown
     state: latest
     update_cache: yes
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
 

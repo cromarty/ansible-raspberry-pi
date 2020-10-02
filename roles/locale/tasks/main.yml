@@ -6,13 +6,13 @@
     state: present
   loop: "{{ locales|default(['en_GB.UTF-8']) }}"
   when:
-    - ansible_distribution in ["Debian","Archlinux"]
+    - ansible_distribution in ["Archlinux","Debian","Ubuntu"]
 
 - name: Set locale
   command: >
     localectl set-locale LANG="{{ default_locale|default('en_GB.UTF-8') }}"
   when:
-    - ansible_distribution in ["Debian","Archlinux"]
+    - ansible_distribution in ["Archlinux","Debian","Ubuntu"]
 
 
 - name: Remove /etc/localtime link
@@ -30,11 +30,11 @@
     group: root
     state: link
   when:
-    - ansible_distribution in ["Debian","Archlinux"]
+    - ansible_distribution in ["Arechlinux","Debian","Ubuntu"]
 
 - name: Configure the console keymap
   command: >
     localectl set-keymap "{{ console_keymap|default('uk') }}"
   when:
-    - ansible_distribution in ["Debian","Archlinux"]
+    - ansible_distribution in ["Archlinux","Debian","Ubuntu"]
 

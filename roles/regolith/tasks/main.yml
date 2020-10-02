@@ -9,10 +9,10 @@
   include_role:
     name: devtools
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
 
 
-- name: Debian, clone regolith-i3
+- name: Clone regolith-i3
   git:
     repo: "{{ regolith_i3_repository }}"
     dest: /tmp/regolith_i3

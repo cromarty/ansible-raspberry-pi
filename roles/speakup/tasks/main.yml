@@ -12,13 +12,13 @@
     group: root
     mode: 0644
   when:
-    - ansible_distribution in ["Archlinux","Debian"]
+    - ansible_distribution in ["Archlinux","Debian","Ubuntu"]
 
 - name: Include the devtools role
   include_role:
     name: devtools
   when:
-    - ansible_distribution in ["Archlinux","Debian"]
+    - ansible_distribution in ["Archlinux","Debian","Ubuntu"]
 
 - name: Include the espeak role
   include_role:
@@ -50,7 +50,7 @@
     - all
     - install
   when:
-    - ansible_distribution in ["Archlinux","Debian"]
+    - ansible_distribution in ["Archlinux","Debian","Ubuntu"]
 
 
 - name: Copy the espeakup.service unit file
@@ -61,7 +61,7 @@
     group: root
     mode: 0644
   when:
-    - ansible_distribution in ["Archlinux","Debian"]
+    - ansible_distribution in ["Archlinux","Debian","Ubuntu"]
 
 
 - name: Copy the espeakup default template
@@ -72,7 +72,7 @@
     group: root
     mode: 0644
   when:
-    - ansible_distribution in ["Archlinux","Debian"]
+    - ansible_distribution in ["Archlinux","Debian","Ubuntu"]
 
 
 - name: Load the speakup kernel modules for this session
@@ -87,7 +87,7 @@
     state: started
     enabled: yes
   when:
-    - ansible_distribution in ["Archlinux","Debian"]
+    - ansible_distribution in ["Archlinux","Debian","Ubuntu"]
     - enable_espeakup_at_boot|default(true)
 
 - name: Restart espeakup and reload systemd daemon
@@ -96,6 +96,6 @@
     state: restarted
     daemon_reload: yes
   when:
-    - ansible_distribution in ["Archlinux","Debian"]
+    - ansible_distribution in ["Archlinux","Debian","Ubuntu"]
     - start_espeakup_immediately|default(true)
 

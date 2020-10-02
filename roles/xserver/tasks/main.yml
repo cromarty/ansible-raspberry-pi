@@ -1,555 +1,556 @@
 ---
 
-- name: Debian update cache
+- name: Debian/Ubuntu, update cache
   apt:
     update_cache: yes
+  when:
+    - ansible_distribution in ["Debian","Ubuntu"]
 
-
-- name: Debian install libdrm-amdgpu1
+- name: Debian/Ubuntu install libdrm-amdgpu1
   apt:
     name: libdrm-amdgpu1
     update_cache: no
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
     - not skip_libdrm_amdgpu1|default(no)
 
 
-- name: Debian install libdrm-freedreno1
+- name: Debian/Ubuntu, install libdrm-freedreno1
   apt:
     name: libdrm-freedreno1
     update_cache: no
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
     - not skip_libdrm_freedreno1|default(no)
 
 
-- name: Debian install libdrm-nouveau2
+- name: Debian/Ubuntu, install libdrm-nouveau2
   apt:
     name: libdrm-nouveau2
     update_cache: no
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
     - not skip_libdrm_nouveau2|default(no)
 
 
-- name: Debian install libdrm-radeon1
+- name: Debian/Ubuntu, install libdrm-radeon1
   apt:
     name: libdrm-radeon1
     update_cache: no
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
     - not skip_libdrm_radeon1|default(no)
 
 
-- name: Debian install libegl1-mesa
+- name: Debian/Ubuntu, install libegl1-mesa
   apt:
     name: libegl1-mesa
     update_cache: no
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
     - not skip_libegl1_mesa|default(no)
 
 
-- name: Debian install libepoxy0
+- name: Debian/Ubuntu, install libepoxy0
   apt:
     name: libepoxy0
     update_cache: no
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
     - not skip_libepoxy0|default(no)
 
 
-- name: Debian install libevdev2
+- name: Debian/Ubuntu, install libevdev2
   apt:
     name: libevdev2
     update_cache: no
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
     - not skip_libevdev2|default(no)
 
 
-- name: Debian install libfontenc1
+- name: Debian/Ubuntu, install libfontenc1
   apt:
     name: libfontenc1
     update_cache: no
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
     - not skip_libfontenc1|default(no)
 
 
-- name: Debian install libgbm1
+- name: Debian/Ubuntu, install libgbm1
   apt:
     name: libgbm1
     update_cache: no
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
     - not skip_libgbm1|default(no)
 
 
-- name: Debian install libgl1-mesa-dri
+- name: Debian/Ubuntu, install libgl1-mesa-dri
   apt:
     name: libgl1-mesa-dri
     update_cache: no
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
     - not skip_libgl1_mesa_dri|default(no)
 
 
-- name: Debian install libgl1-mesa-glx
+- name: Debian/Ubuntu, install libgl1-mesa-glx
   apt:
     name: libgl1-mesa-glx
     update_cache: no
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
     - not skip_libgl1_mesa_glx|default(no)
 
 
-- name: Debian install libglapi-mesa
+- name: Debian/Ubuntu, install libglapi-mesa
   apt:
     name: libglapi-mesa
     update_cache: no
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
     - not skip_libglapi_mesa|default(no)
 
 
-- name: Debian install libglu1-mesa
+- name: Debian/Ubuntu, install libglu1-mesa
   apt:
     name: libglu1-mesa
     update_cache: no
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
     - not skip_libglu1_mesa|default(no)
 
 
-- name: Debian install libgudev-1.0-0
+- name: Debian/Ubuntu, install libgudev-1.0-0
   apt:
     name: libgudev-1.0-0
     update_cache: no
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
     - not skip_libgudev_1_0_0|default(no)
 
 
-- name: Debian install libinput10
+- name: Debian/Ubuntu, install libinput10
   apt:
     name: libinput10
     update_cache: no
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
     - not skip_libinput10|default(no)
 
 
-- name: Debian install libinput-bin
+- name: Debian/Ubuntu, install libinput-bin
   apt:
     name: libinput-bin
     update_cache: no
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
     - not skip_libinput_bin|default(no)
 
 
-- name: Debian install libllvm3.9
+- name: Debian/Ubuntu, install libllvm3.9
   apt:
     name: libllvm3.9
     update_cache: no
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
     - not skip_libllvm3_9|default(no)
 
 
-- name: Debian install libmtdev1
+- name: Debian/Ubuntu, install libmtdev1
   apt:
     name: libmtdev1
     update_cache: no
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
     - not skip_libmtdev1|default(no)
 
 
-- name: Debian install libpciaccess0
+- name: Debian/Ubuntu, install libpciaccess0
   apt:
     name: libpciaccess0
     update_cache: no
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
     - not skip_libpciaccess0|default(no)
 
 
-- name: Debian install libsensors4
+- name: Debian/Ubuntu, install libsensors4
   apt:
     name: libsensors4
     update_cache: no
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
     - not skip_libsensors4|default(no)
 
 
-- name: Debian install libtxc-dxtn-s2tc
+- name: Debian/Ubuntu, install libtxc-dxtn-s2tc
   apt:
     name: libtxc-dxtn-s2tc
     update_cache: no
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
     - not skip_libtxc_dxtn_s2tc|default(no)
 
 
-- name: Debian install libwacom2
+- name: Debian/Ubuntu, install libwacom2
   apt:
     name: libwacom2
     update_cache: no
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
     - not skip_libwacom2|default(no)
 
 
-- name: Debian install libwacom-common
+- name: Debian/Ubuntu, install libwacom-common
   apt:
     name: libwacom-common
     update_cache: no
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
     - not skip_libwacom_common|default(no)
 
 
-- name: Debian install libwayland-client0
+- name: Debian/Ubuntu, install libwayland-client0
   apt:
     name: libwayland-client0
     update_cache: no
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
     - not skip_libwayland_client0|default(no)
 
 
-- name: Debian install libwayland-server0
+- name: Debian/Ubuntu, install libwayland-server0
   apt:
     name: libwayland-server0
     update_cache: no
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
     - not skip_libwayland_server0|default(no)
 
 
-- name: Debian install libxaw7
+- name: Debian/Ubuntu, install libxaw7
   apt:
     name: libxaw7
     update_cache: no
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
     - not skip_libxaw7|default(no)
 
 
-- name: Debian install libxcb-dri2-0
+- name: Debian/Ubuntu, install libxcb-dri2-0
   apt:
     name: libxcb-dri2-0
     update_cache: no
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
     - not skip_libxcb_dri2_0|default(no)
 
 
-- name: Debian install libxcb-dri3-0
+- name: Debian/Ubuntu, install libxcb-dri3-0
   apt:
     name: libxcb-dri3-0
     update_cache: no
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
     - not skip_libxcb_dri3_0|default(no)
 
 
-- name: Debian install libxcb-glx0
+- name: Debian/Ubuntu, install libxcb-glx0
   apt:
     name: libxcb-glx0
     update_cache: no
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
     - not skip_libxcb_glx0|default(no)
 
 
-- name: Debian install libxcb-present0
+- name: Debian/Ubuntu, install libxcb-present0
   apt:
     name: libxcb-present0
     update_cache: no
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
     - not skip_libxcb_present0|default(no)
 
 
-- name: Debian install libxcb-sync1
+- name: Debian/Ubuntu, install libxcb-sync1
   apt:
     name: libxcb-sync1
     update_cache: no
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
     - not skip_libxcb_sync1|default(no)
 
 
-- name: Debian install libxcb-xfixes0
+- name: Debian/Ubuntu, install libxcb-xfixes0
   apt:
     name: libxcb-xfixes0
     update_cache: no
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
     - not skip_libxcb_xfixes0|default(no)
 
 
-- name: Debian install libxcomposite1
+- name: Debian/Ubuntu, install libxcomposite1
   apt:
     name: libxcomposite1
     update_cache: no
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
     - not skip_libxcomposite1|default(no)
 
 
-- name: Debian install libxcursor1
+- name: Debian/Ubuntu, install libxcursor1
   apt:
     name: libxcursor1
     update_cache: no
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
     - not skip_libxcursor1|default(no)
 
 
-- name: Debian install libxdamage1
+- name: Debian/Ubuntu, install libxdamage1
   apt:
     name: libxdamage1
     update_cache: no
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
     - not skip_libxdamage1|default(no)
 
 
-- name: Debian install libxfixes3
+- name: Debian/Ubuntu, install libxfixes3
   apt:
     name: libxfixes3
     update_cache: no
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
     - not skip_libxfixes3|default(no)
 
 
-- name: Debian install libxfont2
+- name: Debian/Ubuntu, install libxfont2
   apt:
     name: libxfont2
     update_cache: no
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
     - not skip_libxfont2|default(no)
 
 
-- name: Debian install libxi6
+- name: Debian/Ubuntu, install libxi6
   apt:
     name: libxi6
     update_cache: no
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
     - not skip_libxi6|default(no)
 
 
-- name: Debian install libxinerama1
+- name: Debian/Ubuntu, install libxinerama1
   apt:
     name: libxinerama1
     update_cache: no
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
     - not skip_libxinerama1|default(no)
 
 
-- name: Debian install libxkbfile1
+- name: Debian/Ubuntu, install libxkbfile1
   apt:
     name: libxkbfile1
     update_cache: no
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
     - not skip_libxkbfile1|default(no)
 
 
-- name: Debian install libxmu6
+- name: Debian/Ubuntu, install libxmu6
   apt:
     name: libxmu6
     update_cache: no
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
     - not skip_libxmu6|default(no)
 
 
-- name: Debian install libxpm4
+- name: Debian/Ubuntu, install libxpm4
   apt:
     name: libxpm4
     update_cache: no
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
     - not skip_libxpm4|default(no)
 
 
-- name: Debian install libxrandr2
+- name: Debian/Ubuntu, install libxrandr2
   apt:
     name: libxrandr2
     update_cache: no
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
     - not skip_libxrandr2|default(no)
 
 
-- name: Debian install libxres1
+- name: Debian/Ubuntu, install libxres1
   apt:
     name: libxres1
     update_cache: no
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
     - not skip_libxres1|default(no)
 
 
-- name: Debian install libxshmfence1
+- name: Debian/Ubuntu, install libxshmfence1
   apt:
     name: libxshmfence1
     update_cache: no
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
     - not skip_libxshmfence1|default(no)
 
 
-- name: Debian install libxss1
+- name: Debian/Ubuntu, install libxss1
   apt:
     name: libxss1
     update_cache: no
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
     - not skip_libxss1|default(no)
 
 
-- name: Debian install libxt6
+- name: Debian/Ubuntu, install libxt6
   apt:
     name: libxt6
     update_cache: no
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
     - not skip_libxt6|default(no)
 
 
-- name: Debian install libxtst6
+- name: Debian/Ubuntu, install libxtst6
   apt:
     name: libxtst6
     update_cache: no
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
     - not skip_libxtst6|default(no)
 
 
-- name: Debian install libxv1
+- name: Debian/Ubuntu, install libxv1
   apt:
     name: libxv1
     update_cache: no
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
     - not skip_libxv1|default(no)
 
 
-- name: Debian install libxxf86dga1
+- name: Debian/Ubuntu, install libxxf86dga1
   apt:
     name: libxxf86dga1
     update_cache: no
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
     - not skip_libxxf86dga1|default(no)
 
 
-- name: Debian install libxxf86vm1
+- name: Debian/Ubuntu, install libxxf86vm1
   apt:
     name: libxxf86vm1
     update_cache: no
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
     - not skip_libxxf86vm1|default(no)
 
 
-- name: Debian install x11-utils
+- name: Debian/Ubuntu, install x11-utils
   apt:
     name: x11-utils
     update_cache: no
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
     - not skip_x11_utils|default(no)
 
 
-- name: Debian install x11-xkb-utils
+- name: Debian/Ubuntu, install x11-xkb-utils
   apt:
     name: x11-xkb-utils
     update_cache: no
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
     - not skip_x11_xkb_utils|default(no)
 
 
-- name: Debian install x11-xserver-utils
+- name: Debian/Ubuntu, install x11-xserver-utils
   apt:
     name: x11-xserver-utils
     update_cache: no
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
     - not skip_x11_xserver_utils|default(no)
 
 
-- name: Debian install xinit
+- name: Debian/Ubuntu, install xinit
   apt:
     name: xinit
     update_cache: no
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
     - not skip_xinit|default(no)
 
 
-- name: Debian install xserver-common
+- name: Debian/Ubuntu, install xserver-common
   apt:
     name: xserver-common
     update_cache: no
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
     - not skip_xserver_common|default(no)
 
 
-- name: Debian install xserver-xorg-core
+- name: Debian/Ubuntu, install xserver-xorg-core
   apt:
     name: xserver-xorg-core
     update_cache: no
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
     - not skip_xserver_xorg_core|default(no)
 
 
-- name: Debian install xserver-xorg-input-all
+- name: Debian/Ubuntu, install xserver-xorg-input-all
   apt:
     name: xserver-xorg-input-all
     update_cache: no
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
     - not skip_xserver_xorg_input_all|default(no)
 
 
-- name: Debian install xserver-xorg-input-libinput
+- name: Debian/Ubuntu, install xserver-xorg-input-libinput
   apt:
     name: xserver-xorg-input-libinput
     update_cache: no
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
     - not skip_xserver_xorg_input_libinput|default(no)
 
 
-- name: Debian install xserver-xorg
+- name: Debian/Ubuntu, install xserver-xorg
   apt:
     name: xserver-xorg
     update_cache: no
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
     - not skip_xserver_xorg|default(no)
 
 
-- name: Debian install xserver-xorg-video-fbdev
+- name: Debian/Ubuntu, install xserver-xorg-video-fbdev
   apt:
     name: xserver-xorg-video-fbdev
     update_cache: no
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
     - not skip_xserver_xorg_video_fbdev|default(no)
 

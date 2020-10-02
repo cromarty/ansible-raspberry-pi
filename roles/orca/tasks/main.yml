@@ -12,13 +12,13 @@
   when:
     - ansible_distribution == "Archlinux"
 
-- name: Debian, install gnome-orca
+- name: Debian/Ubuntu, install gnome-orca
   apt:
     name: gnome-orca
     state: latest
     update_cache: yes
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
 
 
 #

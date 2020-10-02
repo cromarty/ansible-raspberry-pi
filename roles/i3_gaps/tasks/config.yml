@@ -1,10 +1,10 @@
 ---
 
-- name: Debian install dex
+- name: Debian/Ubuntu, install dex
   apt:
     name: dex
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
 
 - name: Install .xinitrc file
   template:

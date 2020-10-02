@@ -12,7 +12,7 @@
     - ansible_distribution == "Debian"
 
 
-- name: Debian, clone i3-gaps
+- name: Debian/Ubuntu, clone i3-gaps
   git:
     repo: "{{ i3_gaps_repository }}"
     dest: /tmp/i3_gaps

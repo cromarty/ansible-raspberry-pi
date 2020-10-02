@@ -23,13 +23,13 @@
   when:
     - ansible_distribution == "Archlinux"
 
-- name: Debian, install sound related packages
+- name: Debian/Ubuntu, install sound related packages
   apt:
     name: alsa-utils,libao4,libao-dev,libao-common
     state: latest
     update_cache: yes
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
 
 
 - name: Add default user to audio group

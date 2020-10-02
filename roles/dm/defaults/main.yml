@@ -3,7 +3,13 @@
 default_user: pi
 default_group: pi
 
+# Currently supported desktop managers are lightdm or lxdm
 desktop_manager: "lightdm"
+
+
+# If either of these is False, then run the xinit role to install and set a xinit file to
+# start the desktop with 'startx' in the console
+# See documentation in the xinit role directory
 enable_desktop_manager: false
 start_desktop_manager: false
 

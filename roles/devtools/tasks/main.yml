@@ -25,11 +25,11 @@
   when:
     - ansible_distribution == "Archlinux"
 
-- name: Debian, install development tools
+- name: Debian/Ubuntu, install development tools
   apt:
     name: build-essential,git,intltool,autoconf
     state: latest
     update_cache: yes
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
 

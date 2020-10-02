@@ -1,7 +1,7 @@
 ---
 
 
-- name: Debian, Copy motd template to /etc/motd
+- name: Raspbian, Copy motd template to /etc/motd
   template:
     src: motd.raspbian.j2
     dest: /etc/motd

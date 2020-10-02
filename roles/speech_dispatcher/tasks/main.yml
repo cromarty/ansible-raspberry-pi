@@ -16,13 +16,13 @@
   when:
     - ansible_distribution == "Archlinux"
 
-- name: Debian, install speech-dispatcher
+- name: Debian/Ubuntu, install speech-dispatcher
   apt:
     name: speech-dispatcher,speech-dispatcher-espeak
     state: latest
     update_cache: yes
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
 
 
 - name: Install speechd.conf template

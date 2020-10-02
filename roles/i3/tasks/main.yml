@@ -12,13 +12,13 @@
   when:
     - ansible_distribution == "Archlinux"
 
-- name: Debian, install i3 desktop
+- name: Debian/Ubuntu, install i3 desktop
   apt:
     name: i3,suckless-tools,libglib2.0-bin,dbus-x11,dex,mate-terminal
     state: latest
     update_cache: yes
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
 
 - name: Create ~/.config/i3 directory
   file:

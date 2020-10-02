@@ -6,7 +6,7 @@
     name: [libev-dev,libstartup-notification0-dev,libxcb-xkb-dev,libxcb-xinerama0-dev,libxcb-randr0-dev]
     update_cache: yes
   when:
-      - ansible_distribution == "Debian"
+      - ansible_distribution in ["Debian","Ubuntu"]
 
 
 - name: Install regolith-i3 dependencies pt2
@@ -14,7 +14,7 @@
     name: [libxcb-shape0-dev,libxcb-util0-dev,libxcb-cursor-dev,libxcb-keysyms1-dev,libxcb-icccm4-dev]
     update_cache: yes
   when:
-      - ansible_distribution == "Debian"
+      - ansible_distribution in ["Debian","Ubuntu"]
 
 
 - name: Install regolith-i3 dependencies pt3
@@ -22,7 +22,7 @@
     name: [libxcb-xrm-dev,libxkbcommon-dev,libxkbcommon-x11-dev,libyajl-dev,libpcre3-dev,libcairo2-dev]
     update_cache: yes
   when:
-      - ansible_distribution == "Debian"
+      - ansible_distribution in ["Debian","Ubuntu"]
 
 
 - name: Install regolith-i3 dependencies pt4
@@ -30,6 +30,6 @@
     name: [libpangocairo-1.0-0,libpango1.0-dev]
     update_cache: yes
   when:
-      - ansible_distribution == "Debian"
+      - ansible_distribution  ["Debian","Ubuntu"]
 
 

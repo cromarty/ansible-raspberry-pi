@@ -16,13 +16,13 @@
   when:
     - ansible_distribution == "Archlinux"
 
-- name: Debian, install the {{ desktop_manager }} desktop manager
+- name: Debian/Ubuntu, install the {{ desktop_manager }} desktop manager
   apt:
     name: "{{ desktop_manager }}"
     state: latest
     update_cache: yes
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
 
 - name: Copy the lightdm.conf file
   file:
@@ -32,7 +32,7 @@
     group: root
     mode: 0644
   when:
-    - ansible_distribution in ["Archlinux","Debian"]
+    - ansible_distribution in ["Archlinux","Debian","Ubuntu"]
 
 - name: Add lightdm user to audio group
   user:
@@ -47,7 +47,7 @@
     path: /etc/xdg/autostart/pulseaudio.desktop
     state: absent
   when:
-    - ansible_distribution in ["Archlinux","Debian"]
+    - ansible_distribution in ["Archlinux","Debian","Ubuntu"]
 
 - name: Enable the "{{ desktop_manager }}" service
   service:

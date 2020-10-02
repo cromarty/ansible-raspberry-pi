@@ -1,0 +1,14 @@
+---
+#
+# At the time of writing the Raspberry Pi Foundation have decided to
+# stop calling their default OS 'Raspbian'
+# and start calling it 'Raspberry Pi OS'
+# But ansible_distribution currently still returns 'Debian'.
+#
+# All hail the wisdom of the Foundation. They move in mysterious ways.
+# (including trying to convince you they made Debian and LXDE)
+#
+
+
+- name: Debug ansible_distribution
+  debug: msg="ansible_distribution - {{ ansible_distribution | default('Unknown') }}"

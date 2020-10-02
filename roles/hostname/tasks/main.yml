@@ -6,9 +6,9 @@
   when:
     - ansible_distribution == "Archlinux"
 
-- name: Debian, set the hostname
+- name: Debian/Ubuntu, set the hostname
   hostname:
     name: "{{ host_name|default('raspberrypi') }}"
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
 

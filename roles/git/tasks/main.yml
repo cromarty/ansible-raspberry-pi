@@ -8,13 +8,13 @@
   when:
     - ansible_distribution == "Archlinux"
 
-- name: Debian, install git
+- name: Debian/Ubuntu, install git
   apt:
     name: git-core
     state: latest
     update_cache: yes
   when:
-    - ansible_distribution == "Debian"
+    - ansible_distribution in ["Debian","Ubuntu"]
 
 
 - name: Config user.name
