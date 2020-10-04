@@ -1,17 +1,16 @@
 ---
 
-- name: Arch, install espeak-ng
+- name: Arch, install espeak (not espeak-ng)
   pacman:
-    name: espeak-ng
-    state: latest
+    name: espeak
     update_cache: yes
   when:
     - ansible_distribution == "Archlinux"
 
 
-- name: Debian/Ubuntu, install espeak-ng and libespeak-ng-dev
+- name: Debian/Ubuntu, install espeak and libespeak-dev (not ng)
   apt:
-    name: espeak-ng,libespeak-ng-dev
+    name: espeak,libespeak-dev
     state: latest
     update_cache: yes
   when:

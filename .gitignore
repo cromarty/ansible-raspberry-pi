@@ -2,7 +2,9 @@ res
 *~
 arse*
 *.res
+*.bak
 
 tests/
+
 
 
