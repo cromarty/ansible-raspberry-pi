@@ -1,6 +1,8 @@
 
 # ansible-raspberry-pi
 
+2020/10/05: Work in progress. Please read the UPDATES.md file in this directory.
+
 All code in this repository is copyright(R), 2018, Mike Ray,
 <mike.ray@btinternet.com>
 
