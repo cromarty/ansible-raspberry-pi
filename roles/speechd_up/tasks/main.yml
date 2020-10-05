@@ -1,0 +1,12 @@
+---
+
+
+- name: Debian/Ubuntu, install speechd-up
+  apt:
+    name: speechd-up
+    state: latest
+    update_cache: yes
+  when:
+    - ansible_distribution in ["Debian","Ubuntu"]
+
+
